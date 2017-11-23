@@ -23,14 +23,20 @@ class Application
         $this->path = $_SERVER['REQUEST_URI']; // all path from address bar, written by client
         $this->components = preg_split('~/{1,}~', $this->path, 0, PREG_SPLIT_NO_EMPTY); // array creating
 
+        //------------for change-------------
+
+
+
+        //_____________for change____________
+
         //--------------assign objects to variables--------------------
 
         // class name
         if($this->components[0] == null){
             echo 'You didn\'t specify needed class';
             return;
-        } else if (class_exists(ucfirst($this->components[0]))) {
-            $this->class = ucfirst($this->components[0]);
+        } else if (class_exists(ucfirst($this->components[0]) . 'Controller')) {
+            $this->class = ucfirst($this->components[0]) . 'Controller';
         } else {
             echo "Not existing class!";
             return;
@@ -52,6 +58,7 @@ class Application
         // realize request
         $this->controller = new $this->class();
         echo $this->controller->{$this->method}(); //TODO: What is it?
+
     }
 
 }
