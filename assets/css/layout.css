@@ -1,0 +1,114 @@
+body {
+    box-sizing: border-box;
+    font-family: Arial, Verdana, sans-serif;
+}
+
+.clear {
+    clear: both;
+}
+
+.page {
+    width: 1000px;
+    max-width: 1000px;
+    min-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    border-bottom: 1px solid #dadada;
+    text-align: center;
+    font-size: 24px;
+    padding: 15px;
+    margin-bottom: 50px;
+}
+
+.content {
+    width: 700px;
+    float: left;
+}
+
+.sidebar {
+    width: 250px;
+    float: right;
+}
+
+.footer {
+    margin-top: 50px;
+    border-top: 1px solid #dadada;
+    text-align: center;
+    padding: 15px;
+    color: #dadada;
+}
+
+.input {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form {
+    width: 175px;
+    margin-left: 50px;
+}
+
+.link {
+    float: right;
+}
+
+.tableHead {
+    margin: 0;
+}
+
+.table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #dadada;
+}
+
+.page-header {
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.page-header-left {
+    width: 65%;
+    float: left;
+}
+
+.page-header-right {
+    width: 30%;
+    float: right;
+}
+
+.page-title {
+    font-size: 32px;
+    line-height: 32px;
+    vertical-align: middle;
+    float: left;
+
+}
+
+.create-btn, a.create-btn {
+    display: inline-block;
+    padding: 7px 25px;
+    background: #ff7c64;
+    color: #ffffff;
+    text-align: center;
+    float: right;
+    text-decoration: none;
+    margin-bottom: 15px;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.create-btn:hover, a.create-btn:hover {
+    text-shadow: none;
+}

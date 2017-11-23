@@ -4,9 +4,19 @@
  * @var $title string
  */
 ?>
-<h1><?= $title ?></h1>
 
-<table>
+<div class="page-header">
+    <div class="page-header-left">
+        <div class="page-title"><?= $title ?></div>
+    </div>
+    <div class="page-header-right">
+        <a href="/user/create" class="create-btn">Create user</a>
+    </div>
+</div>
+
+<div class="clear"></div>
+
+<table class="table">
     <?php foreach ($users as $user) : ?>
         <tr>
             <td><?= $user->getFirstName() ?></td>

@@ -57,7 +57,7 @@ class Application
 
         // realize request
         $this->controller = new $this->class();
-        echo $this->controller->{$this->method}(); //TODO: What is it?
+        echo $this->controller->{$this->method}();
 
     }
 
