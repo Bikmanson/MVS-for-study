@@ -16,7 +16,7 @@ class Controller
      * return this to request method
      */
     function render($viewFileName, array $data = []){
-        $fileName = $viewFileName . '.php'; // view file name
+        $fileName = 'action' . ucfirst($viewFileName) . '.php'; // view file name
 
         // recognize daughter class, requested this method - controller name
         $controller = preg_split("/controller/", strtolower(static::class), -1 , PREG_SPLIT_NO_EMPTY)[0];
@@ -27,7 +27,7 @@ class Controller
         require __DIR__ . '/../views/' . $controller . '/' . $fileName; // finish path to needed view file
         return ob_get_clean(); // get buffer content (like string) and finish buffer with cleaning - return string
 
-        //TODO: existing checking for $fileName
+        //  TODO: existing checking for $fileName
     }
 
 }
