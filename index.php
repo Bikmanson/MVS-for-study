@@ -1,5 +1,7 @@
 <?php
 
+require_once 'framework/databases/IStorage.php';
+require_once 'framework/ActiveRecord.php';
 require_once 'framework/Controller.php';
 require_once 'framework/Model.php';
 require_once 'framework/DB.php';

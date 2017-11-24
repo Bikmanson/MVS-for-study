@@ -7,7 +7,7 @@
 class UserController extends Controller
 {
 
-    public function index(){ //TODO: rename to actionIndex
+    public function actionIndex(){
         $users = UserModel::getAll(); // all information about users from model
 
         // return request to viewer
@@ -17,8 +17,7 @@ class UserController extends Controller
         ]); // - require __DIR__ . '/../views/user/index.php'; <-- to delete
     }
 
-    //TODO: What is it?
-    public function create() //TODO: rename to actionCreate
+    public function actionCreate()
     {
         return $this->render('create');
     }
