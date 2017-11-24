@@ -4,6 +4,8 @@
  * Class UserModel
  * like data base with information about users
  */
+
+//TODO: rename to User
 class UserModel extends Model
 {
 
@@ -16,6 +18,7 @@ class UserModel extends Model
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->age = $age;
+        $this->tableName = 'users';
     }
 
     //temporary realizing of this method - it will works differently

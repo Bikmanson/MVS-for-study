@@ -7,7 +7,7 @@
 class UserController extends Controller
 {
 
-    public function index(){
+    public function index(){ //TODO: rename to actionIndex
         $users = UserModel::getAll(); // all information about users from model
 
         // return request to viewer
@@ -18,7 +18,7 @@ class UserController extends Controller
     }
 
     //TODO: What is it?
-    public function create()
+    public function create() //TODO: rename to actionCreate
     {
         return $this->render('create');
     }
