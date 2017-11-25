@@ -15,9 +15,6 @@ class UserController extends Controller
     public function actionIndex(){
         $users = User::getAll(); // all information about users from model
 
-    public function index(){ //TODO: rename to actionIndex
-        $users = User::getAll(); // all information about users from model
-
         // return request to viewer
         return $this->render('index', [
             'title' => 'Users',
