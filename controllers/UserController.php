@@ -8,7 +8,7 @@ class UserController extends Controller
 {
 
     public function index(){ //TODO: rename to actionIndex
-        $users = UserModel::getAll(); // all information about users from model
+        $users = User::getAll(); // all information about users from model
 
         // return request to viewer
         return $this->render('index', [

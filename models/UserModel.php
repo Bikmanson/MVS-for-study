@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Class UserModel
+ * Class User
  * like data base with information about users
  */
 
-//TODO: rename to User
-class UserModel extends Model
+class User extends Model
 {
 
     private $firstName;
@@ -24,9 +23,9 @@ class UserModel extends Model
     //temporary realizing of this method - it will works differently
     static function getAll() // get all information about users
     {
-       $u1 = new UserModel('Vasya', 'Storojenko', 21);
-       $u2 = new UserModel('Vitya', 'Bikman', 21);
-       $u3 = new UserModel('Vlad', 'Taran', 22);
+       $u1 = new User('Vasya', 'Storojenko', 21);
+       $u2 = new User('Vitya', 'Bikman', 21);
+       $u3 = new User('Vlad', 'Taran', 22);
 
        return [$u1, $u2, $u3];
     }
