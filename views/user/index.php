@@ -2,6 +2,7 @@
 /**
  * @var $users UserModel[]
  * @var $title string
+ * view code
  */
 ?>
 

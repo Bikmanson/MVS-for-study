@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Oleks
- * Date: 22.11.2017
- * Time: 16:58
+ * view code
  */
 ?>
 

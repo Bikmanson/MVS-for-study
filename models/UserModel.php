@@ -3,6 +3,7 @@
 /**
  * Class UserModel
  * like data base with information about users
+ * adds new users
  */
 
 //TODO: rename to User

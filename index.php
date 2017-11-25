@@ -12,15 +12,3 @@ require_once 'framework/Application.php';
 
 $application = new Application();
 $application->run();
-
-/*
-$table = mysqli_query($bd, 'show tables');
-
-if(!$table){
-    die('error');
-}
-
-$row = mysqli_fetch_row($table);
-
-print_r($row);
- */

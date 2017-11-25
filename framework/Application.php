@@ -2,10 +2,6 @@
 
 /**
  * This class:
- *
- * recognize controller and method names from address bar
- * create objects for these
- * realize
  */
 class Application
 {
@@ -16,6 +12,11 @@ class Application
     private $method; // method to request from class
     private $controller; // controller named by class name
 
+    /**
+     * recognizes controller and method names from address bar
+     * creates objects for these
+     * realizes method
+     */
     function run()
     {
 
