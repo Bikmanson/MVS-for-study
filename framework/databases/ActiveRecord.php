@@ -6,7 +6,7 @@
  * Time: 16:00
  */
 
-class ActiveRecord implements IStorage
+class ActiveRecord
 {
 
 }

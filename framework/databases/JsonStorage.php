@@ -6,7 +6,7 @@
  * Time: 15:56
  */
 
-class JsonStorage
+class JsonStorage implements IStorage
 {
 
 }

@@ -25,6 +25,8 @@ class Controller
 
         extract($data); // extracting variables with values from associating array - for future...
 
+        //------------------buffers without layout-----------------
+
         ob_start(); // start save next expressions to buffer, not to screen
         require __DIR__ . '/../views/' . $controller . '/' . $fileName; // finish path to needed view file
         $viewContent = ob_get_clean(); // get buffer content (like string) and finish buffer with cleaning - return string
@@ -33,15 +35,20 @@ class Controller
             return $viewContent;
         }
 
+        //__________________buffers without layout___________________
+
+        //------------------buffer with layout-----------------------
+
         $layoutFileName = __DIR__ . '/../layout/' . $this->layout . '.php';
 
         $content = $viewContent;
 
         ob_start();
+
         require $layoutFileName;
         return ob_get_clean();
 
-        //  TODO: existing checking for $fileName
+        //___________________buffer with layout_______________________
     }
 
 }
