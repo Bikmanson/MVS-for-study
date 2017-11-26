@@ -3,11 +3,16 @@
 /**
  * Class UserController
  * action functions
+ * leading to needed viewers
  */
 class UserController extends Controller
 {
-
-    public function index(){ //TODO: rename to actionIndex
+    
+    /**
+     * @return string
+     * leads to index viewer
+     */
+    public function actionIndex(){
         $users = User::getAll(); // all information about users from model
 
         // return request to viewer
@@ -17,8 +22,11 @@ class UserController extends Controller
         ]); // - require __DIR__ . '/../views/user/index.php'; <-- to delete
     }
 
-    //TODO: What is it?
-    public function create() //TODO: rename to actionCreate
+    /**
+     * @return string
+     * leads to create viewer
+     */
+    public function actionCreate()
     {
         return $this->render('create');
     }

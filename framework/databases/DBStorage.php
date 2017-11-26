@@ -1,14 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Oleks
- * Date: 24.11.2017
- * Time: 15:56
- */
 
-class DBStorage
+require_once '../../assets/sql/connection.php';
+
+class DBStorage implements IStorage
 {
+    public function getAll()
+    {
 
+    };
+/*
+    public function getField(int $id)
+    {
+    };
 
+    public function getColumn($columnName)
+    {
+    };
 
+    public function delete(int $id)
+    {
+    };
+
+    public function add($field, $value)
+    {
+    };
+*/
 }

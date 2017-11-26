@@ -2,6 +2,7 @@
 /**
  * @var $users UserModel[]
  * @var $title string
+ * view code
  */
 ?>
 
@@ -10,7 +11,7 @@
         <div class="page-title"><?= $title ?></div>
     </div>
     <div class="page-header-right">
-        <a href="/user/create" class="create-btn">Create user</a>
+        <a href="create" class="create-btn">Create user</a>
     </div>
 </div>
 

@@ -3,6 +3,7 @@
 /**
  * Class User
  * like data base with information about users
+ * adds new users
  */
 
 class User extends Model
