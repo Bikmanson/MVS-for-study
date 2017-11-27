@@ -1,13 +1,26 @@
 <?php
 
-require_once 'framework/databases/IStorage.php';
-require_once 'framework/databases/ActiveRecord.php';
+//---------------------requirements---------------------
+
+// instruments
+require_once 'assets/sql/connection.php'; // database connection
+require_once 'framework/databases/IStorage.php'; // interface
+// require_once 'framework/databases/DBStorage.php'; // implements interface
+// require_once 'framework/databases/JsonStorage.php'; // implements interface
+
+// parents
+require_once 'framework/databases/ActiveRecord.php'; // parent
+require_once 'framework/Model.php'; // heir and parent
 require_once 'framework/Controller.php';
-require_once 'framework/Model.php';
-require_once 'framework/databases/DB.php';
-require_once 'controllers/UserController.php';
-require_once 'models/User.php';
+
+// heirs
+require_once 'controllers/UserController.php'; // controller
+require_once 'models/User.php'; // model
+
+// main application
 require_once 'framework/Application.php';
+
+//______________________requirements______________________
 
 $config = require ('config/main.php');
 

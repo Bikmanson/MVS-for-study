@@ -1,13 +1,11 @@
 <?php
 
-require_once '../../assets/sql/connection.php';
-
 class DBStorage implements IStorage
 {
     public function getAll()
     {
 
-    };
+    }
 /*
     public function getField(int $id)
     {

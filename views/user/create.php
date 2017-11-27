@@ -4,7 +4,7 @@
  */
 ?>
 
-<form action="" method="post" class="form">
+<form action="" method="post" class="form"> <!--TODO: add action address -->
 
     <label for="firstName" class="label">First Name</label>
     <input type="text" class="input" name="firstName" id="firstName">

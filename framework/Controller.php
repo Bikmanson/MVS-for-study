@@ -8,7 +8,7 @@
 class Controller
 {
 
-    protected $layout = 'main';
+    protected $layout = 'main'; // TODO: must be from config
 
     /**
      * @param $viewFileName

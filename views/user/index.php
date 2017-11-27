@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $users UserModel[]
+ * @var $users User[]
  * @var $title string
  * view code
  */
