@@ -18,6 +18,7 @@ class User extends Model
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->age = $age;
+        //TODO: make query to db here
     }
 
     //temporary realizing of this method - it will works differently

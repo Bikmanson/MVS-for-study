@@ -11,17 +11,16 @@ class Application
     private $class; // class to request its object
     private $method; // method to request from class
     private $controller; // controller named by class name
-    private $config;
+    private static $config;
 
     /**
      * recognizes controller and method names from address bar
      * creates objects for these
      * realizes method
      */
-    function run($config)
+    function run($configuration)
     {
-
-        $this->config = $config;
+        self::$config = $configuration;
 
         //create array with components, ruled by path
         $this->path = $_SERVER['REQUEST_URI']; // all path from address bar, written by client
@@ -63,18 +62,19 @@ class Application
      * @param $key
      * @return mixed
      */
-    public function getConfig($key)
+    public static function getConfig($key)
     {
-        return $this->config[$key];
+        return self::$config[$key];
     }
 
     /**
      * @param $key
      * @param $val
+     * @return mixed
      */
-    public function setConfig($key, $val)
+    public static function setConfig($key, $val)
     {
-        $this->config[$key] = $val;
+        return self::$config[$key] = $val;
     }
 
 }
