@@ -6,6 +6,4 @@
 class Model extends ActiveRecord
 {
 
-    protected $tableName = null;
-
 }

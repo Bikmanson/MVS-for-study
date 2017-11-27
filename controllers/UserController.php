@@ -7,7 +7,7 @@
  */
 class UserController extends Controller
 {
-    
+
     /**
      * @return string
      * leads to index viewer
@@ -28,6 +28,14 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
+
+        // creates new User object
+        if($_POST['firstName'] || $_POST['lastName'] || $_POST['age']){
+            $firstName = $_GET['firstName'];
+            $lastName = $_GET['lastName'];
+            $age= $_GET['age'];
+            new User ($firstName, $lastName, $age); //TODO: add this object to db
+        }
         return $this->render('create');
     }
 

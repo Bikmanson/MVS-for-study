@@ -8,16 +8,17 @@
 class Controller
 {
 
-    protected $layout = 'main'; // TODO: must be from config
+    private $layout = 'main'; // TODO: must be from config
 
     /**
      * @param $viewFileName
      * @param array $data
      * @return string
      * make request to needed viewer
-     * return this to request method
+     * return this to request method of inherited class
      */
     function render($viewFileName, array $data = []){
+
         $fileName = $viewFileName . '.php'; // view file name
 
         // recognize daughter class, requested this method - controller name

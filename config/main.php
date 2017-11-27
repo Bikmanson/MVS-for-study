@@ -1,5 +1,5 @@
 <?php
 
 return $config = [
-    'storageClass' => 'Sql.php'
+    'storageClass' => 'DBStorage.php'
 ];

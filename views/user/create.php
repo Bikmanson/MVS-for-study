@@ -4,7 +4,7 @@
  */
 ?>
 
-<form action="" method="post" class="form"> <!--TODO: add action address -->
+<form action="../../user/create" method="post" class="form">
 
     <label for="firstName" class="label">First Name</label>
     <input type="text" class="input" name="firstName" id="firstName">
@@ -13,7 +13,7 @@
     <input type="text" class="input" name="lastName" id="lastName">
 
     <label for="age" class="label">Age</label>
-    <input type="number" class="input" name="" id="age">
+    <input type="number" class="input" name="age" id="age">
 
     <input type="submit" value="Save">
 

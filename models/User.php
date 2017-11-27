@@ -18,17 +18,18 @@ class User extends Model
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->age = $age;
-        $this->tableName = 'users';
     }
 
     //temporary realizing of this method - it will works differently
-    static function getAll() // get all information about users
+    static function getAll() // get all information about users // TODO: shift to parent ActiveRecord class
     {
+
        $u1 = new User('Vasya', 'Storojenko', 21);
        $u2 = new User('Vitya', 'Bikman', 21);
        $u3 = new User('Vlad', 'Taran', 22);
 
        return [$u1, $u2, $u3];
+
     }
 
     //-------------------------getters and setters------------------------

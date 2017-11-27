@@ -7,20 +7,20 @@ class DBStorage implements IStorage
 
     }
 /*
-    public function getField(int $id)
+    public function getField($fieldName)
     {
-    };
+    }
 
-    public function getColumn($columnName)
+    public function getElement(int $id)
     {
-    };
+    }
 
     public function delete(int $id)
     {
-    };
+    }
 
     public function add($field, $value)
     {
-    };
+    }
 */
 }

@@ -9,9 +9,9 @@ require_once 'framework/databases/IStorage.php'; // interface
 // require_once 'framework/databases/JsonStorage.php'; // implements interface
 
 // parents
-require_once 'framework/databases/ActiveRecord.php'; // parent
+require_once 'framework/databases/ActiveRecord.php'; // ancestor
 require_once 'framework/Model.php'; // heir and parent
-require_once 'framework/Controller.php';
+require_once 'framework/Controller.php'; // parent
 
 // heirs
 require_once 'controllers/UserController.php'; // controller

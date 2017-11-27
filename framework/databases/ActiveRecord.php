@@ -8,5 +8,13 @@
 
 class ActiveRecord
 {
+/*
+    static function getAll() // get all information about users
+    {
+        global $application;
+        $storage = $application->getConfig('storageClass');
+        return $storage->
 
+    }
+*/
 }
