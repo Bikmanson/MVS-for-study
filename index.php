@@ -3,7 +3,6 @@
 //---------------------requirements---------------------
 
 // instruments
-require_once 'assets/sql/connection.php'; // database connection
 require_once 'framework/databases/IStorage.php'; // interface
 // require_once 'framework/databases/DBStorage.php'; // implements interface
 // require_once 'framework/databases/JsonStorage.php'; // implements interface

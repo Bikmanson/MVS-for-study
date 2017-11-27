@@ -8,6 +8,11 @@
 
 class ActiveRecord
 {
+
+    public function add($field, $value){
+
+    }
+
 /*
     static function getAll() // get all information about users
     {
