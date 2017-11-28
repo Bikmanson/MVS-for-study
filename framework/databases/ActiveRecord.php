@@ -1,25 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Oleks
- * Date: 24.11.2017
- * Time: 16:00
- */
 
 class ActiveRecord
 {
 
-    public function add($field, $value){
+        public function add($table, array $fields, array $values){
 
-    }
+            $storageClass = Application::getConfig('storageClass');
+            $storageClass = new $storageClass();
+            $fieldsString = implode(", ", $fields);
+            $valuesString = "'" . implode("','", $values) . "'";
 
-/*
-    static function getAll() // get all information about users
-    {
-        global $application;
-        $storage = $application->getConfig('storageClass');
-        return $storage->
+            $storageClass->add($table, $fieldsString, $valuesString);
 
-    }
-*/
+        }
+
+    /*
+        static function getAll() // get all information about users
+        {
+
+            $storageClass = Application::getConfig('storageClass');
+
+        }
+    */
 }
