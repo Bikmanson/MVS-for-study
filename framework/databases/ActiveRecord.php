@@ -1,19 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Oleks
- * Date: 24.11.2017
- * Time: 16:00
- */
 
 class ActiveRecord
 {
 
-    static function getAll() // get all information about users
-    {
+        public function add($table, array $fields, array $values){
 
-        $storageClass = Application::getConfig('storageClass');
+            $storageClass = Application::getConfig('storageClass');
+            $storageClass = new $storageClass();
+            $fieldsString = implode(", ", $fields);
+            $valuesString = "'" . implode("','", $values) . "'";
 
-    }
+            $storageClass->add($table, $fieldsString, $valuesString);
+
+        }
 
 }
