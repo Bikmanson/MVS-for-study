@@ -31,7 +31,7 @@ class UserController extends Controller
     public function actionCreate()
     {
 //TODO: adds information to database again after window reloading - fix!!!
-        
+
         // creates new User object
         if (isset($_POST)) {
 
@@ -47,8 +47,9 @@ class UserController extends Controller
 
 
             // create new user in database
-            if(!($firstName == '' && $lastName == '' && $age == 0)){
-                new User ($firstName, $lastName, $age);
+            if (!($firstName == '' && $lastName == '' && $age == 0)) {
+                $user = new User ($firstName, $lastName, $age);
+                $user->save();
             }
 
         } // if end

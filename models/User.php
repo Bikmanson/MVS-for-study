@@ -12,6 +12,7 @@ class User extends Model
     private $firstName;
     private $lastName;
     private $age;
+    public $table = 'users';
 
     function __construct($firstName, $lastName, $age)
     {
@@ -19,10 +20,19 @@ class User extends Model
         $this->lastName = $lastName;
         $this->age = $age;
 
-        // for database
-        $fields = ['first_name', 'last_name', 'age'];
-        $values = [$this->firstName, $this->lastName, $this->age];
-        $this->add('users', $fields, $values);
+        $this->attributes = [
+            'table' => $this->table,
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+            'age' => $this->age
+        ];
+
+        /*
+                // for database
+                $fields = ['first_name', 'last_name', 'age'];
+                $values = [$this->firstName, $this->lastName, $this->age];
+                $this->insert('users', $fields, $values);
+        */
 
     }
 
@@ -30,11 +40,11 @@ class User extends Model
     static function getAll() // get all information about users // TODO: shift to parent ActiveRecord class
     {
         //TODO: delete this
-       $u1 = new User('Vasya', 'Storojenko', 21);
-       $u2 = new User('Vitya', 'Bikman', 21);
-       $u3 = new User('Vlad', 'Taran', 22);
+        $u1 = new User('Vasya', 'Storojenko', 21);
+        $u2 = new User('Vitya', 'Bikman', 21);
+        $u3 = new User('Vlad', 'Taran', 22);
 
-       return [$u1, $u2, $u3];
+        return [$u1, $u2, $u3];
 
     }
 
@@ -45,6 +55,7 @@ class User extends Model
     {
         return $this->firstName;
     }
+
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
@@ -55,6 +66,7 @@ class User extends Model
     {
         return $this->lastName;
     }
+
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
@@ -65,6 +77,7 @@ class User extends Model
     {
         return $this->age;
     }
+
     public function setAge($age)
     {
         $this->age = $age;

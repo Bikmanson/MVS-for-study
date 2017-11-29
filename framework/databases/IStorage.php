@@ -1,8 +1,9 @@
 <?php
 
-interface IStorage{
+interface IStorage
+{
 
-    public function add($table, $field, $value);
+    public function insert($table, array $fields, array $values);
 
     /*
     public function getAll();

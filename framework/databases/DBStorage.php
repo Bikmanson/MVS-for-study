@@ -17,9 +17,12 @@ class DBStorage implements IStorage
 
     }
 
-    public function add($table, $field, $value)
+    public function insert($table, array $fields, array $values)
     {
-        $request = sprintf('INSERT INTO %s (%s) VALUE (%s);', $table, $field, $value);
+        $fields = implode(", ", $fields);
+        $values = "'" . implode("','", $values) . "'";
+
+        $request = sprintf('INSERT INTO %s (%s) VALUE (%s);', $table, $fields, $values);
         mysqli_query(self::$db, $request);
     }
 
