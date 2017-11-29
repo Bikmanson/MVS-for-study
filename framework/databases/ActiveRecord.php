@@ -5,6 +5,9 @@ class ActiveRecord
 
     protected $attributes = [];
 
+    /**
+     * records data from $attributes to storage class
+     */
     public function save()
     {
         // new storage class object

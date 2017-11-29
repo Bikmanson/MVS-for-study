@@ -20,19 +20,13 @@ class User extends Model
         $this->lastName = $lastName;
         $this->age = $age;
 
+        // preparing attributes array for save method
         $this->attributes = [
             'table' => $this->table,
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'age' => $this->age
         ];
-
-        /*
-                // for database
-                $fields = ['first_name', 'last_name', 'age'];
-                $values = [$this->firstName, $this->lastName, $this->age];
-                $this->insert('users', $fields, $values);
-        */
 
     }
 
