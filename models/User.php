@@ -19,9 +19,9 @@ class User extends Model
         $this->lastName = $lastName;
         $this->age = $age;
 
+        // for database
         $fields = ['first_name', 'last_name', 'age'];
         $values = [$this->firstName, $this->lastName, $this->age];
-
         $this->add('users', $fields, $values);
 
     }

@@ -12,7 +12,9 @@ class UserController extends Controller
      * @return string
      * leads to index viewer
      */
-    public function actionIndex(){
+    public function actionIndex()
+    {
+        //TODO: this expression creates three new users - delete it!
         $users = User::getAll(); // all information about users from model
 
         // return request to viewer
@@ -29,13 +31,27 @@ class UserController extends Controller
     public function actionCreate()
     {
 //TODO: adds information to database again after window reloading - fix!!!
+        
         // creates new User object
-        if($_POST['firstName'] || $_POST['lastName'] || $_POST['age']){
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $age= $_POST['age'];
-            new User ($firstName, $lastName, $age);
-        }
+        if (isset($_POST)) {
+
+            // check $_POST array for regex
+            foreach ($_POST as $field => &$value) {
+                if (!preg_match('/^\w+$/ui', $value)) {
+                    $value = '';
+                }
+            }
+            unset($value);
+
+            extract($_POST); // assign variables with data
+
+
+            // create new user in database
+            if(!($firstName == '' && $lastName == '' && $age == 0)){
+                new User ($firstName, $lastName, $age);
+            }
+
+        } // if end
         return $this->render('create');
     }
 

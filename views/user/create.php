@@ -4,7 +4,7 @@
  */
 ?>
 
-<form action="../../user/create" method="post" class="form">
+<form method="post" class="form">
 
     <label for="firstName" class="label">First Name</label>
     <input type="text" class="input" name="firstName" id="firstName">
