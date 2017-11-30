@@ -12,28 +12,12 @@ class User extends Model
     private $firstName;
     private $lastName;
     private $age;
-    public $table = 'users';
+    public $attributes = ['firstName' => '', 'lastName' => '', 'age' => ''];
 
-    function __construct($firstName, $lastName, $age)
+
+    function __construct()
     {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->age = $age;
-
-        $this->attributes = [
-            'table' => $this->table,
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'age' => $this->age
-        ];
-
-        /*
-                // for database
-                $fields = ['first_name', 'last_name', 'age'];
-                $values = [$this->firstName, $this->lastName, $this->age];
-                $this->insert('users', $fields, $values);
-        */
-
+        $this->table = 'users';
     }
 
     //temporary realizing of this method - it will works differently
@@ -47,6 +31,57 @@ class User extends Model
         return [$u1, $u2, $u3];
 
     }
+
+    function rules()
+    {
+
+    }
+
+    //-------------------------validators-------------------------
+
+    protected function firstNameValidator() // TODO: << because of access modifier. And below too
+    {
+        $bool = true;
+
+        if((!preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]$/', $this->firstName)) && $this->firstName !== ''){ //TODO: << !== | && <<?
+            $this->errors .= 'used forbidden characters';
+            $bool = false;
+        }elseif(!strlen($this->firstName) <= 20){
+            $this->errors .= 'very long name';
+            $bool = false;
+        }
+
+        return $bool;
+    }
+
+    protected function lastNameValidator()
+    {
+        $bool = true;
+
+        if(!preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]$/', $this->lastName) && $this->lastName !== ''){
+            $this->errors .= 'used forbidden characters';
+            $bool = false;
+        }elseif(!strlen($this->lastName) <= 20){
+            $this->errors .= 'very long name';
+            $bool = false;
+        }
+
+        return $bool;
+    }
+
+    protected function ageValidator()
+    {
+        $bool = true;
+
+        if((!$this->age <= 20) && ($this->age !== '')){
+            $this->errors .= 'very long name';
+            $bool = false;
+        }
+
+        return $bool;
+    }
+
+    //_________________________validators_________________________
 
     //-------------------------getters and setters------------------------
 

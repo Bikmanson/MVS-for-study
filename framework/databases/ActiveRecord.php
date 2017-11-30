@@ -1,9 +1,12 @@
 <?php
 
-class ActiveRecord
+abstract class ActiveRecord
 {
 
-    protected $attributes = [];
+    protected $table;
+    protected $errors = [];
+
+    abstract protected function rules();
 
     public function save()
     {
@@ -11,22 +14,16 @@ class ActiveRecord
         $storageClass = Application::getConfig('storageClass');
         $storageClass = new $storageClass();
 
-        // table name
-        $table = $this->attributes['table'];
-        array_shift($this->attributes);
-
-        // fields / columns
-        $fields = array_keys($this->attributes);
-
-        // values to fields
-        $values = [];
-        foreach ($this->attributes as $attribute) {
-            $values[] = $attribute;
+        $class = static::class;
+        $fields = [];
+        extract($class->$attributes);
+        // TODO: why? If will not fix this - just create $attributes here and assign in heir constructor
+        foreach ($class->$attributes as $attribute) {
+            $fields[] = $attribute;
         }
-        unset($attribute);
 
         // insert new data to database
-        $storageClass->insert($table, $fields, $values);
+        $storageClass->insert($this->table, $fields, $values);
     }
 
 }
