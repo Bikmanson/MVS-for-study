@@ -39,7 +39,7 @@ class UserController extends Controller
 
         if ($user->validate()) {
             $user->save();
-            return $this->render('create', [
+            return $this->render('create',[
                 'massage' => 'User is saved successfully'
             ]);
         } else {
