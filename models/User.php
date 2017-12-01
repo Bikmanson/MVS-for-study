@@ -12,8 +12,6 @@ class User extends Model
     private $firstName;
     private $lastName;
     private $age;
-    public $attributes = ['firstName' => '', 'lastName' => '', 'age' => ''];
-
 
     function __construct()
     {
@@ -32,9 +30,26 @@ class User extends Model
 
     }
 
-    function rules()
-    {
+    //--------------------implementations-------------------
 
+    protected function attributes()
+    {
+        return [
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+            'age' => $this->age
+        ];
+    }
+
+    //____________________implementations___________________
+
+    protected function rules()
+    {
+        return [
+            'firstName' => 'firstNameValidator',
+            'lastName' => 'lastNameValidator',
+            'age' => 'ageValidator'
+        ];
     }
 
     //-------------------------validators-------------------------
@@ -43,11 +58,16 @@ class User extends Model
     {
         $bool = true;
 
-        if((!preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]$/', $this->firstName)) && $this->firstName !== ''){ //TODO: << !== | && <<?
-            $this->errors .= 'used forbidden characters';
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->firstName))) {
+            $this->errors[] = 'Used forbidden characters';
             $bool = false;
-        }elseif(!strlen($this->firstName) <= 20){
-            $this->errors .= 'very long name';
+        }
+        if (!(strlen($this->firstName) <= 20)) {
+            $this->errors[] = 'Very long name! Must be in range of 20';
+            $bool = false;
+        }
+        if (!$this->firstName) {
+            $this->errors[] = 'Object is NULL';
             $bool = false;
         }
 
@@ -58,11 +78,16 @@ class User extends Model
     {
         $bool = true;
 
-        if(!preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]$/', $this->lastName) && $this->lastName !== ''){
-            $this->errors .= 'used forbidden characters';
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->lastName))) {
+            $this->errors[] = 'Used forbidden characters';
             $bool = false;
-        }elseif(!strlen($this->lastName) <= 20){
-            $this->errors .= 'very long name';
+        }
+        if (!(strlen($this->lastName) <= 20)) {
+            $this->errors[] = 'Very long name! Must be in range of 20';
+            $bool = false;
+        }
+        if (!$this->lastName) {
+            $this->errors[] = 'Object is NULL';
             $bool = false;
         }
 
@@ -73,11 +98,14 @@ class User extends Model
     {
         $bool = true;
 
-        if((!$this->age <= 20) && ($this->age !== '')){
-            $this->errors .= 'very long name';
+        if (!($this->age <= 120)) {
+            $this->errors[] = 'Very old human - it\'s impossible';
             $bool = false;
         }
-
+        if (!$this->age) {
+            $this->errors[] = 'Object is NULL';
+            $bool = false;
+        }
         return $bool;
     }
 

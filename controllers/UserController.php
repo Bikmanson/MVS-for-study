@@ -32,28 +32,21 @@ class UserController extends Controller
     {
 //TODO: adds information to database again after window reloading - fix!!!
 
-        // creates new User object
-        if (isset($_POST)) {
+        $user = new User();
+        $user->setFirstName($_POST['firstName']);
+        $user->setLastName($_POST['lastName']);
+        $user->setAge($_POST['age']);
 
-            // check $_POST array for regex
-            foreach ($_POST as $field => &$value) {
-                if (!preg_match('/^\w+$/ui', $value)) {
-                    $value = '';
-                }
-            }
-            unset($value);
-
-            extract($_POST); // assign variables with data
-
-
-            // create new user in database
-            if (!($firstName == '' && $lastName == '' && $age == 0)) {
-                $user = new User ($firstName, $lastName, $age);
-                $user->save();
-            }
-
-        } // if end
-        return $this->render('create');
+        if ($user->validate()) {
+            $user->save();
+            return $this->render('create', [
+                'massage' => 'User is saved successfully'
+            ]);
+        } else {
+            return $this->render('create', [
+                'massage' => $user->getErrorsSummary(),
+                'user' => $user
+            ]);
+        }
     }
-
 }

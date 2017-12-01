@@ -11,10 +11,8 @@ class DBStorage implements IStorage
 
     function __construct()
     {
-
         return self::$db = mysqli_connect(self::$dbHost, self::$dbUsername, '', self::$dbName)
             or die('Trouble with connection database: ' . mysqli_connect_error());
-
     }
 
     public function insert($table, array $fields, array $values)
@@ -22,7 +20,7 @@ class DBStorage implements IStorage
         $fields = implode(", ", $fields);
         $values = "'" . implode("','", $values) . "'";
 
-        $request = sprintf('INSERT INTO %s (%s) VALUE (%s);', $table, $fields, $values);
+        $request = sprintf('INSERT INTO %s (%s) VALUES (%s)', $table, $fields, $values);
         mysqli_query(self::$db, $request);
     }
 
