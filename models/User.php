@@ -12,22 +12,10 @@ class User extends Model
     private $firstName;
     private $lastName;
     private $age;
-    public $table = 'users';
 
-    function __construct($firstName, $lastName, $age)
+    function __construct()
     {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->age = $age;
-
-        // preparing attributes array for save method
-        $this->attributes = [
-            'table' => $this->table,
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'age' => $this->age
-        ];
-
+        $this->table = 'users';
     }
 
     //temporary realizing of this method - it will works differently
@@ -41,6 +29,87 @@ class User extends Model
         return [$u1, $u2, $u3];
 
     }
+
+    //--------------------implementations-------------------
+
+    protected function attributes()
+    {
+        return [
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+            'age' => $this->age
+        ];
+    }
+
+    //____________________implementations___________________
+
+    protected function rules()
+    {
+        return [
+            'firstName' => 'firstNameValidator',
+            'lastName' => 'lastNameValidator',
+            'age' => 'ageValidator'
+        ];
+    }
+
+    //-------------------------validators-------------------------
+
+    protected function firstNameValidator() // TODO: << because of access modifier. And below too
+    {
+        $bool = true;
+
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->firstName))) {
+            $this->errors[] = 'Used forbidden characters';
+            $bool = false;
+        }
+        if (!(strlen($this->firstName) <= 20)) {
+            $this->errors[] = 'Very long name! Must be in range of 20';
+            $bool = false;
+        }
+        if (!$this->firstName) {
+            $this->errors[] = 'Object is NULL';
+            $bool = false;
+        }
+
+        return $bool;
+    }
+
+    protected function lastNameValidator()
+    {
+        $bool = true;
+
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->lastName))) {
+            $this->errors[] = 'Used forbidden characters';
+            $bool = false;
+        }
+        if (!(strlen($this->lastName) <= 20)) {
+            $this->errors[] = 'Very long name! Must be in range of 20';
+            $bool = false;
+        }
+        if (!$this->lastName) {
+            $this->errors[] = 'Object is NULL';
+            $bool = false;
+        }
+
+        return $bool;
+    }
+
+    protected function ageValidator()
+    {
+        $bool = true;
+
+        if (!($this->age <= 120)) {
+            $this->errors[] = 'Very old human - it\'s impossible';
+            $bool = false;
+        }
+        if (!$this->age) {
+            $this->errors[] = 'Object is NULL';
+            $bool = false;
+        }
+        return $bool;
+    }
+
+    //_________________________validators_________________________
 
     //-------------------------getters and setters------------------------
 

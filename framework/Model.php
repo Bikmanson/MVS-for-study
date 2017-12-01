@@ -3,7 +3,7 @@
 /**
  * Parent class Model
  */
-class Model extends ActiveRecord
+abstract class Model extends ActiveRecord
 {
 
 }

@@ -1,9 +1,31 @@
 <?php
 
-class ActiveRecord
+abstract class ActiveRecord
 {
+    protected $table;
+    protected $errors = [];
 
-    protected $attributes = [];
+    abstract protected function rules();
+
+    abstract protected function attributes();
+
+    public function validate() // TODO: doesn't access empty fields. Even one of
+    {
+        $bool = true;
+        foreach ($this->rules() as $rule) {
+            if ($bool) $bool = $this->$rule(); else $this->$rule();
+        }
+        return $bool;
+    }
+
+    public function getErrorsSummary()
+    {
+        $out = '';
+        foreach ($this->errors as $error) {
+            $out .= "<p>{$error}</p>";
+        }
+        return $out;
+    }
 
     /**
      * records data from $attributes to storage class
@@ -14,22 +36,15 @@ class ActiveRecord
         $storageClass = Application::getConfig('storageClass');
         $storageClass = new $storageClass();
 
-        // table name
-        $table = $this->attributes['table'];
-        array_shift($this->attributes);
+        // receive fields for insert into
+        $fields = array_keys($this->attributes());
 
-        // fields / columns
-        $fields = array_keys($this->attributes);
-
-        // values to fields
         $values = [];
-        foreach ($this->attributes as $attribute) {
-            $values[] = $attribute;
+        foreach ($this->attributes() as $field => $value) {
+            $values[] = $value;
         }
-        unset($attribute);
 
         // insert new data to database
-        $storageClass->insert($table, $fields, $values);
+        $storageClass->insert($this->table, $fields, $values);
     }
-
 }
