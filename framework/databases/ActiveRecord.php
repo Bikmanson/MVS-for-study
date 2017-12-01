@@ -4,16 +4,21 @@ abstract class ActiveRecord
 {
     protected $table;
     protected $errors = [];
+    protected $empty = 0;
 
     abstract protected function rules();
 
     abstract protected function attributes();
 
-    public function validate() // TODO: doesn't access empty fields. Even one of
+    public function validate()
     {
         $bool = true;
         foreach ($this->rules() as $rule) {
             if ($bool) $bool = $this->$rule(); else $this->$rule();
+        }
+        if($this->empty === count($this->rules())){
+            $this->errors[] = 'Every field is empty. Input please';
+            $bool = false;
         }
         return $bool;
     }

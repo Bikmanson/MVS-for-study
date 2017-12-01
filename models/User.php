@@ -58,7 +58,7 @@ class User extends Model
     {
         $bool = true;
 
-        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->firstName))) {
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->firstName)) && $this->firstName !== '') {
             $this->errors[] = 'Used forbidden characters';
             $bool = false;
         }
@@ -66,9 +66,9 @@ class User extends Model
             $this->errors[] = 'Very long name! Must be in range of 20';
             $bool = false;
         }
-        if (!$this->firstName) {
-            $this->errors[] = 'Object is NULL';
-            $bool = false;
+        if($this->firstName === ''){
+            $this->empty++;
+            $bool = true;
         }
 
         return $bool;
@@ -78,7 +78,7 @@ class User extends Model
     {
         $bool = true;
 
-        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->lastName))) {
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->lastName)) && $this->lastName !== '') {
             $this->errors[] = 'Used forbidden characters';
             $bool = false;
         }
@@ -86,9 +86,9 @@ class User extends Model
             $this->errors[] = 'Very long name! Must be in range of 20';
             $bool = false;
         }
-        if (!$this->lastName) {
-            $this->errors[] = 'Object is NULL';
-            $bool = false;
+        if($this->lastName === ''){
+            $this->empty++;
+            $bool = true;
         }
 
         return $bool;
@@ -98,13 +98,14 @@ class User extends Model
     {
         $bool = true;
 
-        if (!($this->age <= 120)) {
+        if (!($this->age <= 120) && ($this->age > 0)) {
             $this->errors[] = 'Very old human - it\'s impossible';
             $bool = false;
         }
-        if (!$this->age) {
-            $this->errors[] = 'Object is NULL';
-            $bool = false;
+        if($this->age === ''){
+            $this->age = '';
+            $this->empty++;
+            $bool = true;
         }
         return $bool;
     }
