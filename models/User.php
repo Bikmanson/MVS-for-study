@@ -12,13 +12,10 @@ class User extends Model
     private $firstName;
     private $lastName;
     private $age;
-
-    function __construct()
-    {
-        $this->table = 'users';
-    }
+    private $tableName = 'users';
 
     //temporary realizing of this method - it will works differently
+
     static function getAll() // get all information about users // TODO: shift to parent ActiveRecord class
     {
         //TODO: delete this
@@ -29,7 +26,6 @@ class User extends Model
         return [$u1, $u2, $u3];
 
     }
-
     //--------------------implementations-------------------
 
     protected function attributes()
@@ -115,36 +111,44 @@ class User extends Model
     //-------------------------getters and setters------------------------
 
     // firstName
+
     public function getFirstName()
     {
         return $this->firstName;
     }
-
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
     }
 
     // lastName
+
     public function getLastName()
     {
         return $this->lastName;
     }
-
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
     }
 
     // age
+
     public function getAge()
     {
         return $this->age;
     }
-
     public function setAge($age)
     {
         $this->age = $age;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTableName()
+    {
+        return $this->tableName;
     }
 
     //___________________________________getters and setters_____________________________

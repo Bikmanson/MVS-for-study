@@ -30,10 +30,10 @@ class Controller
 
         ob_start(); // start save next expressions to buffer, not to screen
         require __DIR__ . '/../views/' . $controller . '/' . $fileName; // finish path to needed view file
-        $viewContent = ob_get_clean(); // get buffer content (like string) and finish buffer with cleaning - return string
+        $content = ob_get_clean(); // get buffer content (like string) and finish buffer with cleaning - return string
 
         if(!$this->layout){
-            return $viewContent;
+            return $content;
         }
 
         //__________________buffers without layout___________________
@@ -41,8 +41,6 @@ class Controller
         //------------------buffer with layout-----------------------
 
         $layoutFileName = __DIR__ . '/../layout/' . $this->layout . '.php';
-
-        $content = $viewContent;
 
         ob_start();
 

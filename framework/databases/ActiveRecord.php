@@ -2,7 +2,6 @@
 
 abstract class ActiveRecord
 {
-    protected $table;
     protected $errors = [];
     protected $empty = 0;
 
@@ -50,6 +49,6 @@ abstract class ActiveRecord
         }
 
         // insert new data to database
-        $storageClass->insert($this->table, $fields, $values);
+        $storageClass->insert(static::getTableName(), $fields, $values);
     }
 }
