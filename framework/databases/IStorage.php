@@ -3,6 +3,8 @@
 interface IStorage
 {
 
+    public function connect();
+
     public function insert($table, array $fields, array $values);
 
     /*

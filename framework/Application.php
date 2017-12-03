@@ -14,6 +14,7 @@ class Application
     private static $config;
 
     /**
+     * @param $configuration
      * recognizes controller and method names from address bar
      * creates objects for these
      * realizes method
@@ -59,12 +60,11 @@ class Application
     }
 
     /**
-     * @param $key
      * @return mixed
      */
-    public static function getConfig($key)
+    public static function getConfig()
     {
-        return self::$config[$key];
+        return self::$config;
     }
 
     /**

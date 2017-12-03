@@ -13,6 +13,7 @@ class User extends Model
     private $lastName;
     private $age;
     private $tableName = 'users';
+    protected $empty = 0;
 
     //temporary realizing of this method - it will works differently
 
@@ -26,6 +27,7 @@ class User extends Model
         return [$u1, $u2, $u3];
 
     }
+
     //--------------------implementations-------------------
 
     protected function attributes()
@@ -37,24 +39,32 @@ class User extends Model
         ];
     }
 
-    //____________________implementations___________________
-
     protected function rules()
     {
         return [
             'firstName' => 'firstNameValidator',
             'lastName' => 'lastNameValidator',
-            'age' => 'ageValidator'
+            'age' => 'ageValidator',
+            'emptyError' => function () {
+                if ($this->empty === (count($this->rules()) - 1)) {
+                    $this->errors[] = 'Every field is empty. Input please';
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         ];
     }
 
+    //____________________implementations___________________
+
     //-------------------------validators-------------------------
 
-    protected function firstNameValidator() // TODO: << because of access modifier. And below too
+    protected function firstNameValidator()
     {
         $bool = true;
 
-        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->firstName)) && $this->firstName !== '') {
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄсур\-]+$/', $this->firstName)) && $this->firstName !== '') {
             $this->errors[] = 'Used forbidden characters';
             $bool = false;
         }
@@ -62,7 +72,7 @@ class User extends Model
             $this->errors[] = 'Very long name! Must be in range of 20';
             $bool = false;
         }
-        if($this->firstName === ''){
+        if ($this->firstName === '') {
             $this->empty++;
             $bool = true;
         }
@@ -74,7 +84,7 @@ class User extends Model
     {
         $bool = true;
 
-        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄ\-]+$/', $this->lastName)) && $this->lastName !== '') {
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄсур\-]+$/', $this->lastName)) && $this->lastName !== '') {
             $this->errors[] = 'Used forbidden characters';
             $bool = false;
         }
@@ -82,7 +92,7 @@ class User extends Model
             $this->errors[] = 'Very long name! Must be in range of 20';
             $bool = false;
         }
-        if($this->lastName === ''){
+        if ($this->lastName === '') {
             $this->empty++;
             $bool = true;
         }
@@ -94,11 +104,14 @@ class User extends Model
     {
         $bool = true;
 
-        if (!($this->age <= 120) && ($this->age > 0)) {
+        if (!preg_match('/\d/', $this->age) && $this->age !== '') { // is digits checking
+            $this->errors[] = 'Field age access digits only';
+            $bool = false;
+        } elseif (!($this->age <= 120) && ($this->age > 0)) { // is in range of checking
             $this->errors[] = 'Very old human - it\'s impossible';
             $bool = false;
         }
-        if($this->age === ''){
+        if ($this->age === '') {
             $this->age = '';
             $this->empty++;
             $bool = true;
@@ -116,6 +129,7 @@ class User extends Model
     {
         return $this->firstName;
     }
+
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
@@ -127,6 +141,7 @@ class User extends Model
     {
         return $this->lastName;
     }
+
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
@@ -138,6 +153,7 @@ class User extends Model
     {
         return $this->age;
     }
+
     public function setAge($age)
     {
         $this->age = $age;

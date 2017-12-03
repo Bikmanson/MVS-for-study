@@ -8,9 +8,7 @@
 class Controller
 {
 
-    private $layout = 'main'; // TODO: must be from config
-
-    /**
+        /**
      * @param $viewFileName
      * @param array $data
      * @return string
@@ -18,6 +16,8 @@ class Controller
      * return this to request method of inherited class
      */
     function render($viewFileName, array $data = []){
+
+        $layout = Application::getConfig()['layout'];
 
         $fileName = $viewFileName . '.php'; // view file name
 
@@ -32,7 +32,7 @@ class Controller
         require __DIR__ . '/../views/' . $controller . '/' . $fileName; // finish path to needed view file
         $content = ob_get_clean(); // get buffer content (like string) and finish buffer with cleaning - return string
 
-        if(!$this->layout){
+        if(!$layout){
             return $content;
         }
 
@@ -40,7 +40,7 @@ class Controller
 
         //------------------buffer with layout-----------------------
 
-        $layoutFileName = __DIR__ . '/../layout/' . $this->layout . '.php';
+        $layoutFileName = __DIR__ . '/../layout/' . $layout . '.php';
 
         ob_start();
 

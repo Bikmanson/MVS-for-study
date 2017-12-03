@@ -3,7 +3,6 @@
 abstract class ActiveRecord
 {
     protected $errors = [];
-    protected $empty = 0;
 
     abstract protected function rules();
 
@@ -13,11 +12,20 @@ abstract class ActiveRecord
     {
         $bool = true;
         foreach ($this->rules() as $rule) {
-            if ($bool) $bool = $this->$rule(); else $this->$rule();
-        }
-        if($this->empty === count($this->rules())){
-            $this->errors[] = 'Every field is empty. Input please';
-            $bool = false;
+            if(is_string($rule)){
+                if ($bool) {
+                    $bool = $this->$rule();
+                } else {
+                    $this->$rule();
+                }
+            }elseif(is_callable($rule)){
+                if ($bool) {
+                    $bool = call_user_func($rule);
+                } else {
+                    call_user_func($rule);
+                }
+            }
+
         }
         return $bool;
     }
@@ -37,8 +45,9 @@ abstract class ActiveRecord
     public function save()
     {
         // new storage class object
-        $storageClass = Application::getConfig('storageClass');
+        $storageClass = Application::getConfig()['storage']['class'];
         $storageClass = new $storageClass();
+        $storageClass->connect();
 
         // receive fields for insert into
         $fields = array_keys($this->attributes());

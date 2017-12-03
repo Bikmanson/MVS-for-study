@@ -3,15 +3,23 @@
 
 class DBStorage implements IStorage
 {
-
-    private static $dbHost = 'localhost';
-    private static $dbUsername = 'root';
-    private static $dbName = 'php';
+    private static $config;
     private static $db;
 
-    function __construct()
+
+    public function connect()
     {
-        return self::$db = mysqli_connect(self::$dbHost, self::$dbUsername, '', self::$dbName)
+        self::$config = [
+            'host' => Application::getConfig()['storage']['host'],
+            'user' => Application::getConfig()['storage']['user'],
+            'password' => Application::getConfig()['storage']['password'],
+            'database' => Application::getConfig()['storage']['database']
+        ];
+        if (!self::$config['password']) {
+            self::$config['password'] = '';
+        }
+
+        return self::$db = mysqli_connect(self::$config['host'], self::$config['user'], self::$config['password'], self::$config['database'])
             or die('Trouble with connection database: ' . mysqli_connect_error());
     }
 
@@ -24,22 +32,22 @@ class DBStorage implements IStorage
         mysqli_query(self::$db, $request);
     }
 
-/*
-    public function getAll()
-    {
+    /*
+        public function getAll()
+        {
 
-    }
+        }
 
-    public function getField($fieldName)
-    {
-    }
+        public function getField($fieldName)
+        {
+        }
 
-    public function getElement(int $id)
-    {
-    }
+        public function getElement(int $id)
+        {
+        }
 
-    public function delete(int $id)
-    {
-    }
-*/
+        public function delete(int $id)
+        {
+        }
+    */
 }

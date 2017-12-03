@@ -1,5 +1,11 @@
 <?php
 
 return $config = [
-    'storageClass' => 'DBStorage'
+    'storage' => [
+        'class' => 'DBStorage',
+        'host' => 'localhost',
+        'user' => 'root',
+        'database' => 'php'
+    ],
+    'layout' => 'main'
 ];

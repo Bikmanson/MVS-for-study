@@ -43,12 +43,11 @@ class UserController extends Controller
                 'massage' => 'User is saved successfully'
             ]);
         } else {
-
-            echo $user->getErrorsSummary();
-
             return $this->render('create', [
                 'massage' => $user->getErrorsSummary(),
-                'user' => $user
+                'firstName' => $user->getFirstName(),
+                'lastName' => $user->getLastName(),
+                'age' => $user->getAge()
             ]);
         }
     }

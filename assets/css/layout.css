@@ -112,3 +112,11 @@ td {
 .create-btn:hover, a.create-btn:hover {
     text-shadow: none;
 }
+
+/* doesn't work... */
+.massage{
+    font-size: 15px;
+    color: #b0b0b0;
+    width: 300px;
+    float: right;
+}
