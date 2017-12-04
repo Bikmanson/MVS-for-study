@@ -14,13 +14,13 @@
 <form method="post" class="form">
 
     <label for="firstName" class="label">First Name</label>
-    <input type="text" class="input" name="firstName" id="firstName" value="<?=$firstName?>">
+    <input type="text" class="input" name="firstName" id="firstName" value="<?if($user)echo $user->getFirstName()?>">
 
     <label for="lastName" class="label">Last Name</label>
-    <input type="text" class="input" name="lastName" id="lastName" value="<?=$lastName?>">
+    <input type="text" class="input" name="lastName" id="lastName" value="<?if($user) echo $user->getLastName()?>">
 
     <label for="age" class="label">Age</label>
-    <input type="number" class="input" name="age" id="age" value="<?=$age?>">
+    <input type="number" class="input" name="age" id="age" value="<?if($user) echo $user->getAge()?>">
 
     <input type="submit" value="Save">
 

@@ -45,9 +45,7 @@ class UserController extends Controller
         } else {
             return $this->render('create', [
                 'massage' => $user->getErrorsSummary(),
-                'firstName' => $user->getFirstName(),
-                'lastName' => $user->getLastName(),
-                'age' => $user->getAge()
+                'user' => $user
             ]);
         }
     }

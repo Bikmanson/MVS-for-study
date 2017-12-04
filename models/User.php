@@ -16,7 +16,6 @@ class User extends Model
     protected $empty = 0;
 
     //temporary realizing of this method - it will works differently
-
     static function getAll() // get all information about users // TODO: shift to parent ActiveRecord class
     {
         //TODO: delete this
@@ -63,7 +62,6 @@ class User extends Model
     protected function firstNameValidator()
     {
         $bool = true;
-
         if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄсур\-]+$/', $this->firstName)) && $this->firstName !== '') {
             $this->errors[] = 'Used forbidden characters';
             $bool = false;
