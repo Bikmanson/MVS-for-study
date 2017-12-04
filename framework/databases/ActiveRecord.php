@@ -3,7 +3,16 @@
 abstract class ActiveRecord
 {
     protected $errors = [];
+    private $storageClass;
 
+    function __construct()
+    {
+        $this->storageClass = Application::getConfig()['storage']['class'];
+        $this->storageClass = new $this->storageClass();
+        $this->storageClass->init();
+    }
+
+//-------------------------------self methods-----------------------------
     abstract protected function rules();
 
     abstract protected function attributes();
@@ -12,13 +21,13 @@ abstract class ActiveRecord
     {
         $bool = true;
         foreach ($this->rules() as $rule) {
-            if(is_string($rule)){
+            if (is_string($rule)) {
                 if ($bool) {
                     $bool = $this->$rule();
                 } else {
                     $this->$rule();
                 }
-            }elseif(is_callable($rule)){
+            } elseif (is_callable($rule)) {
                 if ($bool) {
                     $bool = call_user_func($rule);
                 } else {
@@ -40,15 +49,22 @@ abstract class ActiveRecord
     }
 
     /**
+     * @return mixed
+     */
+    public function getStorageClass()
+    {
+        return $this->storageClass;
+    }
+
+//____________________________________self methods__________________________________
+
+//-----------------------------methods that use interface---------------------------
+
+    /**
      * records data from $attributes to storage class
      */
     public function save()
     {
-        // new storage class object
-        $storageClass = Application::getConfig()['storage']['class'];
-        $storageClass = new $storageClass();
-        $storageClass->connect();
-
         // receive fields for insert into
         $fields = array_keys($this->attributes());
 
@@ -58,6 +74,13 @@ abstract class ActiveRecord
         }
 
         // insert new data to database
-        $storageClass->insert(static::getTableName(), $fields, $values);
+        $this->storageClass->insert(static::getTableName(), $fields, $values);
     }
+/*
+    public static function getDate(){
+        echo 'hello';
+        return call_user_func(Array($this->storageClass, 'getDate', static::getTableName));
+    }
+*/
+//_______________________________methods that use interface___________________________
 }

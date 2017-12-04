@@ -15,7 +15,9 @@ class UserController extends Controller
     public function actionIndex()
     {
         //TODO: this expression creates three new users - delete it!
-        $users = User::getAll(); // all information about users from model
+        $storageClass = Application::getConfig()['storage']['class'];
+        $users = call_user_func_array(Array($storageClass, 'getDate'), Array(User::getTableName()));
+        //$users = User::getDate(); // all information about users from model
 
         // return request to viewer
         return $this->render('index', [

@@ -6,8 +6,8 @@ class DBStorage implements IStorage
     private static $config;
     private static $db;
 
-
-    public function connect()
+// connecting with database
+    public function init()
     {
         self::$config = [
             'host' => Application::getConfig()['storage']['host'],
@@ -23,6 +23,7 @@ class DBStorage implements IStorage
             or die('Trouble with connection database: ' . mysqli_connect_error());
     }
 
+// to add some information to table
     public function insert($table, array $fields, array $values)
     {
         $fields = implode(", ", $fields);
@@ -32,22 +33,25 @@ class DBStorage implements IStorage
         mysqli_query(self::$db, $request);
     }
 
+// to get information from table
+    public static function getDate($table)
+    {
+        // todo: is not ready
+        $request = sprintf('SELECT * FROM %s', $table);
+        $result = mysqli_query(self::$db, $request);
+        return mysqli_fetch_row($result);
+    }
     /*
-        public function getAll()
-        {
+    public function getField($fieldName)
+    {
+    }
 
-        }
+    public function getElement(int $id)
+    {
+    }
 
-        public function getField($fieldName)
-        {
-        }
-
-        public function getElement(int $id)
-        {
-        }
-
-        public function delete(int $id)
-        {
-        }
+    public function delete(int $id)
+    {
+    }
     */
 }

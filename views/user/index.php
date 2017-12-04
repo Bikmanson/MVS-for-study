@@ -17,7 +17,11 @@
 
 <div class="clear"></div>
 
+<div class="tableBlock">
 <table class="table">
+    <tr>
+        <td><b>First Name</b></td><td><b>Last Name</b></td><td><b>Age</b></td>
+    </tr>
     <?php foreach ($users as $user) : ?>
         <tr>
             <td><?= $user->getFirstName() ?></td>
@@ -26,3 +30,4 @@
         </tr>
     <?php endforeach; ?>
 </table>
+</div>

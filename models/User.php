@@ -9,10 +9,10 @@
 class User extends Model
 {
 
-    private $firstName;
+    private static $tableName = 'users';
     private $lastName;
+    private $firstName;
     private $age;
-    private $tableName = 'users';
     protected $empty = 0;
 
     //temporary realizing of this method - it will works differently
@@ -160,9 +160,9 @@ class User extends Model
     /**
      * @return string
      */
-    public function getTableName()
+    public static function getTableName()
     {
-        return $this->tableName;
+        return self::$tableName;
     }
 
     //___________________________________getters and setters_____________________________
