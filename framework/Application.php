@@ -13,6 +13,10 @@ class Application
     private $controller; // controller named by class name
     private static $config;
 
+    public static function autoload($class){
+
+    }
+
     /**
      * @param $configuration
      * recognizes controller and method names from address bar

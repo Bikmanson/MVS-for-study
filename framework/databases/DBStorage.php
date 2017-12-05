@@ -34,7 +34,7 @@ class DBStorage implements IStorage
     }
 
 // to get information from table
-    public static function getDate($table)
+    public static function getData($table)
     {
         // todo: is not ready
         $request = sprintf('SELECT * FROM %s', $table);

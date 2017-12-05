@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class UserController
  * action functions
@@ -17,7 +16,7 @@ class UserController extends Controller
         //TODO: this expression creates three new users - delete it!
         $storageClass = Application::getConfig()['storage']['class'];
         $users = call_user_func_array(Array($storageClass, 'getDate'), Array(User::getTableName()));
-        //$users = User::getDate(); // all information about users from model
+        //$users = User::getData(); // all information about users from model
 
         // return request to viewer
         return $this->render('index', [

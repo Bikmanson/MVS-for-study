@@ -7,7 +7,7 @@ interface IStorage
 
     public function insert($table, array $fields, array $values);
 
-    public static function getDate($table);
+    public static function getData($table);
 
 /*
     public function getField(int $id);

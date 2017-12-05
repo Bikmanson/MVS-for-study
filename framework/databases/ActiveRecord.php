@@ -3,13 +3,19 @@
 abstract class ActiveRecord
 {
     protected $errors = [];
-    private $storageClass;
+    private $storage;
 
     function __construct()
     {
-        $this->storageClass = Application::getConfig()['storage']['class'];
-        $this->storageClass = new $this->storageClass();
-        $this->storageClass->init();
+        $storageClass = Application::getConfig()['storage']['class'];
+        $this->storage = new $storageClass();
+        if($this->storage instanceof IStorage){
+            $this->storage->init();
+        } else {
+            echo 'Storage class doesn\'t implement IStorage interface';
+            die();
+        }
+
     }
 
 //-------------------------------self methods-----------------------------
@@ -77,7 +83,7 @@ abstract class ActiveRecord
         $this->storageClass->insert(static::getTableName(), $fields, $values);
     }
 /*
-    public static function getDate(){
+    public static function getData(){
         echo 'hello';
         return call_user_func(Array($this->storageClass, 'getDate', static::getTableName));
     }
