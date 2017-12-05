@@ -1,4 +1,10 @@
 <?php
+namespace controllers;
+
+use Application;
+use framework\Controller;
+use models\User;
+
 /**
  * Class UserController
  * action functions
@@ -32,7 +38,6 @@ class UserController extends Controller
     public function actionCreate()
     {
 //TODO: adds information to database again after window reloading - fix!!!
-
         $user = new User();
         $user->setFirstName($_POST['firstName']);
         $user->setLastName($_POST['lastName']);

@@ -1,5 +1,9 @@
 <?php
 
+namespace framework;
+
+use Application;
+
 /**
  * Parent class Controller
  *
@@ -22,7 +26,7 @@ class Controller
         $fileName = $viewFileName . '.php'; // view file name
 
         // recognize daughter class, requested this method - controller name
-        $controller = preg_split("/controller/", strtolower(static::class), -1 , PREG_SPLIT_NO_EMPTY)[0];
+        $controller = preg_split("/controller/", strtolower(array_pop(explode('\\', static::class))), -1 , PREG_SPLIT_NO_EMPTY)[0];
 
         extract($data); // extracting variables with values from associating array - for future...
 

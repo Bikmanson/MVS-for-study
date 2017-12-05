@@ -1,5 +1,9 @@
 <?php
 
+namespace framework\database;
+
+use Application;
+
 abstract class ActiveRecord
 {
     protected $errors = [];

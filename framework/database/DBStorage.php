@@ -1,6 +1,10 @@
 <?php
 
 
+namespace framework\database;
+
+use Application;
+
 class DBStorage implements IStorage
 {
     private static $config;

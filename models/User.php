@@ -1,4 +1,8 @@
 <?php
+namespace models;
+
+use framework\Model;
+
 
 /**
  * Class User
@@ -18,13 +22,6 @@ class User extends Model
     //temporary realizing of this method - it will works differently
     static function getAll() // get all information about users // TODO: shift to parent ActiveRecord class
     {
-        //TODO: delete this
-        $u1 = new User('Vasya', 'Storojenko', 21);
-        $u2 = new User('Vitya', 'Bikman', 21);
-        $u3 = new User('Vlad', 'Taran', 22);
-
-        return [$u1, $u2, $u3];
-
     }
 
     //--------------------implementations-------------------
@@ -38,6 +35,9 @@ class User extends Model
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function rules()
     {
         return [

@@ -13,7 +13,24 @@ class Application
     private $controller; // controller named by class name
     private static $config;
 
-    public static function autoload($class){
+    public static function autoload($className)
+    {
+        $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
+
+        if(!file_exists($fileName)){
+
+            $includeClassName = array_pop(explode('\\', $className));
+            $path = str_replace($includeClassName, '', $className);
+
+            $matches = [];
+            preg_match('/([A-Z])/', $path, $matches);
+            foreach ($matches as $match) {
+                $path = str_replace($match, '-'.lcfirst($match), $path);
+            }
+            $fileName = $path . $includeClassName . '.php';
+
+        }
+        require_once $fileName;
 
     }
 
@@ -33,12 +50,14 @@ class Application
 
         //--------------assign objects to variables--------------------
 
+        $controllerClassName = 'controllers\\' . ucfirst($this->components[0]) . 'Controller';
+
         // class name
         if ($this->components[0] == null) {
             echo 'You didn\'t specify needed class';
             return;
-        } else if (class_exists(ucfirst($this->components[0]) . 'Controller')) {
-            $this->class = ucfirst($this->components[0]) . 'Controller';
+        } else if (class_exists($controllerClassName)) {
+            $this->class =$controllerClassName;
         } else {
             echo "Not existing class!";
             return;
