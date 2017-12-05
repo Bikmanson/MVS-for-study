@@ -1,4 +1,10 @@
 <?php
+namespace controllers;
+
+use Application;
+use cN\TestNamespace;
+use framework\Controller;
+use models\User;
 
 /**
  * Class UserController
@@ -33,7 +39,8 @@ class UserController extends Controller
     public function actionCreate()
     {
 //TODO: adds information to database again after window reloading - fix!!!
-
+        $a = new TestNamespace();
+        $a->pr();
         $user = new User();
         $user->setFirstName($_POST['firstName']);
         $user->setLastName($_POST['lastName']);

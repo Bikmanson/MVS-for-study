@@ -2,7 +2,7 @@
 
 return $config = [
     'storage' => [
-        'class' => 'DBStorage',
+        'class' => \framework\database\DBStorage::class,
         'host' => 'localhost',
         'user' => 'root',
         'database' => 'php'
