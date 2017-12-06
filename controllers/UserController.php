@@ -23,22 +23,26 @@ class UserController extends Controller
     public function actionIndex()
     {
         //TODO: this expression creates three new users - delete it!
-        $storageClass = Application::getConfig()['storage']['class'];
-        $user = new User();
-        if(!$storageClass){
-            throw new ConfigException('The configuration doesn\'t exist storage class name');
-        } else {
-            $storage = new $storageClass;
-            $table = User::getTableName();
-            $usersData = $storage->getData($table);
-            //$users = call_user_func_array(Array($storageClass, 'getData'), Array(User::getTableName()));
-            //$users = User::getDate(); // all information about users from model
+        try{
+            $storageClass = Application::getConfig()['storage']['class'];
+            $user = new User(); // for connecting with database (in ActiveRecord constructor)
+            if(!$storageClass){
+                throw new ConfigException('The configuration doesn\'t exist storage class name');
+            } else {
+                $storage = new $storageClass;
+                $table = User::getTableName();
+                $usersData = $storage->getData($table);
+                //$users = call_user_func_array(Array($storageClass, 'getData'), Array(User::getTableName()));
+                //$users = User::getDate(); // all information about users from model
 
-            // return request to viewer
-            return $this->render('index', [
-                'title' => 'Users',
-                'users' => $users // value is array
-            ]); // - require __DIR__ . '/../views/user/index.php'; <-- to delete
+                // return request to viewer
+                return $this->render('index', [
+                    'title' => 'Users',
+                    'users' => $users // value is array
+                ]); // - require __DIR__ . '/../views/user/index.php'; <-- to delete
+            }
+        } catch (WrongStorageException $e){
+            $e->getMessage();
         }
     }
 
