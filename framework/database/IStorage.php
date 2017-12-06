@@ -9,7 +9,7 @@ interface IStorage
 
     public function insert($table, array $fields, array $values);
 
-    public static function getData($table);
+    public function getData($table);
 
 /*
     public function getField(int $id);
