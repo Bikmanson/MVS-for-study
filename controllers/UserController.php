@@ -71,6 +71,5 @@ class UserController extends Controller
         } catch(WrongStorageException $e){
             echo $e->getMessage();
         }
-
     }
 }
