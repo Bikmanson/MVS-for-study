@@ -9,6 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Layout</title>
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/assets/css/layout.css">
 </head>
 <body>
@@ -27,5 +29,6 @@
     </div>
 </div>
 
+<script src="../assets/js/bootstrap.js"></script>
 </body>
 </html>

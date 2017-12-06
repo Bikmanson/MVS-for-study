@@ -14,7 +14,7 @@ class DBStorage implements IStorage
      * @return bool
      * connecting with database
      */
-    public function init()
+    public static function init()
     {
         self::$config = [
             'host' => Application::getConfig()['storage']['host'],
@@ -50,12 +50,19 @@ class DBStorage implements IStorage
      * @return array|null
      * to get information from table
      */
-    public function getData($table)
+    public static function find($table)
     {
+        if(!self::$db) {
+            self::init();
+        }
         // todo: is not ready
         $request = sprintf('SELECT * FROM %s', $table);
         $tableData = mysqli_query(self::$db, $request);
-        return mysqli_fetch_row($result);
+        $result = [];
+        while ($row = mysqli_fetch_array($tableData)) {
+            $result[] = $row;
+        }
+        return $result;
     }
     /*
     public function getField($fieldName)

@@ -23,23 +23,9 @@ class UserController extends Controller
     public function actionIndex()
     {
         //TODO: this expression creates three new users - delete it!
-        $storageClass = Application::getConfig()['storage']['class'];
-        $user = new User();
-        if(!$storageClass){
-            throw new ConfigException('The configuration doesn\'t exist storage class name');
-        } else {
-            $storage = new $storageClass;
-            $table = User::getTableName();
-            $usersData = $storage->getData($table);
-            //$users = call_user_func_array(Array($storageClass, 'getData'), Array(User::getTableName()));
-            //$users = User::getDate(); // all information about users from model
-
-            // return request to viewer
-            return $this->render('index', [
-                'title' => 'Users',
-                'users' => $users // value is array
-            ]); // - require __DIR__ . '/../views/user/index.php'; <-- to delete
-        }
+        $users = User::find();
+        $title = 'Users';
+        return $this->render('index', ['users' => $users, 'title' => $title]);
     }
 
     /**
@@ -48,29 +34,21 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-//TODO: adds information to database again after window reloading - fix!!!
-        try{
-            $user = new User();
-            $user->setFirstName($_POST['firstName']);
-            $user->setLastName($_POST['lastName']);
-            $user->setAge($_POST['age']);
+        $user = new User();
+        $user->first_name = $_POST['firstName'];
+        $user->last_name = $_POST['lastName'];
+        $user->age = $_POST['age'];
 
-            if ($user->validate()) {
-                $user->save();
-                return $this->render('create',[
-                    'massage' => 'User is saved successfully'
-                ]);
-            } else {
-                return $this->render('create', [
-                    'massage' => $user->getErrorsSummary(),
-                    'user' => $user
-                ]);
-            }
-        } catch(ConfigException $e){
-            echo $e->getMessage();
-        } catch(WrongStorageException $e){
-            echo $e->getMessage();
+        if ($user->validate()) {
+            $user->save();
+            return $this->render('create',[
+                'massage' => 'User is saved successfully'
+            ]);
+        } else {
+            return $this->render('create', [
+                'massage' => $user->getErrorsSummary(),
+                'user' => $user
+            ]);
         }
-
     }
 }

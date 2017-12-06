@@ -5,14 +5,12 @@ namespace framework;
 use Application;
 
 /**
- * Parent class Controller
- *
+ * Parent class Controller\
  * has method render
  */
 class Controller
 {
-
-        /**
+    /**
      * @param $viewFileName
      * @param array $data
      * @return string

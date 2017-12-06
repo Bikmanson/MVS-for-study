@@ -1,4 +1,5 @@
 <?php
+
 namespace models;
 
 use framework\Model;
@@ -9,49 +10,54 @@ use framework\Model;
  * like data base with information about users
  * adds new users
  */
-
 class User extends Model
 {
 
     private static $tableName = 'users';
-    private $lastName;
-    private $firstName;
-    private $age;
-    protected $empty = 0;
+    public $last_name;
+    public $first_name;
+    public $age;
 
-    //temporary realizing of this method - it will works differently
-    static function getAll() // get all information about users // TODO: shift to parent ActiveRecord class
+    public function validate()
     {
+        $empty = 0;
+        $bool = true;
+        $fields = self::attributes();
+        foreach ($fields as $field) {
+            if(!$this->$field){
+                $empty++;
+            }
+        }
+        if($empty === count($fields)){
+            $bool = false;
+            $this->errors[] = 'Every field is empty. Form will not be committed';
+        }
+        if($bool === true){
+            $bool = parent::validate();
+        }
+        return $bool;
     }
 
     //--------------------implementations-------------------
 
-    protected function attributes()
+    protected static function attributes()
     {
         return [
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'age' => $this->age
+            'first_name',
+            'last_name',
+            'age'
         ];
     }
 
     /**
      * @return array
      */
-    protected function rules()
+    protected static function rules()
     {
         return [
             'firstName' => 'firstNameValidator',
             'lastName' => 'lastNameValidator',
-            'age' => 'ageValidator',
-            'emptyError' => function () {
-                if ($this->empty === (count($this->rules()) - 1)) {
-                    $this->errors[] = 'Every field is empty. Input please';
-                    return false;
-                } else {
-                    return true;
-                }
-            }
+            'age' => 'ageValidator'
         ];
     }
 
@@ -62,16 +68,15 @@ class User extends Model
     protected function firstNameValidator()
     {
         $bool = true;
-        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄсур\-]+$/', $this->firstName)) && $this->firstName !== '') {
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄсур\-]+$/', $this->first_name)) && $this->first_name !== '') {
             $this->errors[] = 'Used forbidden characters';
             $bool = false;
         }
-        if (!(strlen($this->firstName) <= 20)) {
+        if (!(strlen($this->first_name) <= 20)) {
             $this->errors[] = 'Very long name! Must be in range of 20';
             $bool = false;
         }
-        if ($this->firstName === '') {
-            $this->empty++;
+        if ($this->first_name === '') {
             $bool = true;
         }
 
@@ -82,16 +87,15 @@ class User extends Model
     {
         $bool = true;
 
-        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄсур\-]+$/', $this->lastName)) && $this->lastName !== '') {
+        if (!(preg_match('/^[a-zA-Zа-яА-ЯіІїЇєЄсур\-]+$/', $this->last_name)) && $this->last_name !== '') {
             $this->errors[] = 'Used forbidden characters';
             $bool = false;
         }
-        if (!(strlen($this->lastName) <= 20)) {
+        if (!(strlen($this->last_name) <= 20)) {
             $this->errors[] = 'Very long name! Must be in range of 20';
             $bool = false;
         }
-        if ($this->lastName === '') {
-            $this->empty++;
+        if ($this->last_name === '') {
             $bool = true;
         }
 
@@ -111,7 +115,6 @@ class User extends Model
         }
         if ($this->age === '') {
             $this->age = '';
-            $this->empty++;
             $bool = true;
         }
         return $bool;
@@ -120,42 +123,6 @@ class User extends Model
     //_________________________validators_________________________
 
     //-------------------------getters and setters------------------------
-
-    // firstName
-
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-    }
-
-    // lastName
-
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-    }
-
-    // age
-
-    public function getAge()
-    {
-        return $this->age;
-    }
-
-    public function setAge($age)
-    {
-        $this->age = $age;
-    }
 
     /**
      * @return string
