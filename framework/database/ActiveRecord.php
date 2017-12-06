@@ -3,17 +3,31 @@
 namespace framework\database;
 
 use Application;
+use framework\Exception\ConfigException;
+use framework\Exception\WrongStorageException;
 
 abstract class ActiveRecord
 {
     protected $errors = [];
-    private $storageClass;
+    private $storage;
 
+    /**
+     * ActiveRecord constructor.
+     * @throws ConfigException
+     */
     function __construct()
     {
-        $this->storageClass = Application::getConfig()['storage']['class'];
-        $this->storageClass = new $this->storageClass();
-        $this->storageClass->init();
+        $storageClass = Application::getConfig()['storage']['class'];
+        if (!$storageClass) {
+            throw new ConfigException('The configuration doesn\'t exist storage class name');
+        } else {
+            $this->storage = new $storageClass();
+            if(!$this->storage instanceof IStorage){
+                throw new WrongStorageException('The storage from configuration is not instance of needed interface!');
+            } else {
+                $this->storage->init();
+            }
+        }
     }
 
 //-------------------------------self methods-----------------------------
@@ -57,7 +71,7 @@ abstract class ActiveRecord
      */
     public function getStorageClass()
     {
-        return $this->storageClass;
+        return $this->storage;
     }
 
 //____________________________________self methods__________________________________
@@ -78,13 +92,13 @@ abstract class ActiveRecord
         }
 
         // insert new data to database
-        $this->storageClass->insert(static::getTableName(), $fields, $values);
+        $this->storage->insert(static::getTableName(), $fields, $values);
     }
-/*
-    public static function getDate(){
-        echo 'hello';
-        return call_user_func(Array($this->storageClass, 'getDate', static::getTableName));
-    }
-*/
+    /*
+        public static function getDate(){
+            echo 'hello';
+            return call_user_func(Array($this->storageClass, 'getDate', static::getTableName));
+        }
+    */
 //_______________________________methods that use interface___________________________
 }
