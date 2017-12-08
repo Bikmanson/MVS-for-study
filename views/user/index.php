@@ -1,33 +1,35 @@
-<?php
-/**
- * @var $users User[]
- * @var $title string
- * view code
- */
-?>
-
-<div class="page-header">
+<div class="container">
     <div class="page-header-left">
-        <div class="page-title"><?= $title ?></div>
+        <h1><?= $title ?></h1>
     </div>
-    <div class="page-header-right">
-        <a href="create" class="create-btn">Create user</a>
-    </div>
+</div>
+
+
+<div class="pull-right">
+    <a href="create" class="btn btn-success">Create user</a>
 </div>
 
 <div class="clear"></div>
 
-<div class="tableBlock">
-<table class="table">
+<table class="table table-bordered table-hover">
     <tr>
-        <td><b>First Name</b></td><td><b>Last Name</b></td><td><b>Age</b></td>
+        <td><b>First Name</b></td>
+        <td><b>Last Name</b></td>
+        <td><b>Age</b></td>
+        <td style="width: 120px"></td>
     </tr>
     <?php foreach ($users as $user) : ?>
         <tr>
-            <td><?= $user->getFirstName() ?></td>
-            <td><?= $user->getLastName() ?></td>
-            <td><?= $user->getAge() ?></td>
+            <td><?= $user->first_name ?></td>
+            <td><?= $user->last_name ?></td>
+            <td><?= $user->age ?></td>
+            <td>
+
+<!--todo: to add id number to href; then, take it in ran method; and make request by id number in activeRecords-->
+
+                <a href="update" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                <a href="#" class="btn btn-danger" name="delete"><i class="fa fa-remove"></i></a>
+            </td>
         </tr>
     <?php endforeach; ?>
 </table>
-</div>

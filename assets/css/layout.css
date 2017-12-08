@@ -58,11 +58,6 @@ body {
     margin: 0;
 }
 
-.tableBlock{
-    height:400px;
-    overflow: auto;
-}
-
 .table {
     width: 100%;
     border: 1px solid black;

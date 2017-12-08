@@ -5,11 +5,11 @@ namespace framework\database;
 interface IStorage
 {
 
-    public function init();
+    public static function init();
 
     public function insert($table, array $fields, array $values);
 
-    public function getData($table);
+    public static function find($table);
 
 /*
     public function getField(int $id);

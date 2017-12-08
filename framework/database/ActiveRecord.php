@@ -25,20 +25,20 @@ abstract class ActiveRecord
             if(!$this->storage instanceof IStorage){
                 throw new WrongStorageException('The storage from configuration is not instance of needed interface!');
             } else {
-                $this->storage->init();
+                call_user_func([$storageClass, 'init']);
             }
         }
     }
 
 //-------------------------------self methods-----------------------------
-    abstract protected function rules();
+    abstract protected static function rules();
 
-    abstract protected function attributes();
+    abstract protected static function attributes();
 
     public function validate()
     {
         $bool = true;
-        foreach ($this->rules() as $rule) {
+        foreach (static::rules() as $rule) {
             if (is_string($rule)) {
                 if ($bool) {
                     $bool = $this->$rule();
@@ -84,21 +84,34 @@ abstract class ActiveRecord
     public function save()
     {
         // receive fields for insert into
-        $fields = array_keys($this->attributes());
+        $fields = static::attributes();
 
         $values = [];
-        foreach ($this->attributes() as $field => $value) {
-            $values[] = $value;
+        foreach (static::attributes() as $attribute) {
+            $values[] = $this->$attribute;
         }
 
         // insert new data to database
         $this->storage->insert(static::getTableName(), $fields, $values);
     }
-    /*
-        public static function getDate(){
-            echo 'hello';
-            return call_user_func(Array($this->storageClass, 'getDate', static::getTableName));
+
+    /**
+     * @return array
+     */
+    public static function find(){
+        $storage = Application::getConfig()['storage']['class'];
+        $table = static::getTableName();
+        $queryResult = $storage::find($table);
+        $models = [];
+        foreach ($queryResult as $row) {
+            $modelClassName = static::class;
+            $model = new $modelClassName;
+            foreach (static::attributes() as $attribute) {
+                $model->$attribute = $row[$attribute];
+            }
+            $models[] = $model;
         }
-    */
+        return $models;
+    }
 //_______________________________methods that use interface___________________________
 }
