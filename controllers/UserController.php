@@ -5,6 +5,7 @@ use Application;
 use framework\Controller;
 use framework\Exception\ConfigException;
 use framework\Exception\WrongStorageException;
+use http\QueryString;
 use models\User;
 
 /**
@@ -50,5 +51,9 @@ class UserController extends Controller
                 'user' => $user
             ]);
         }
+    }
+
+    public function actionUpdate($id){
+        echo $id;
     }
 }

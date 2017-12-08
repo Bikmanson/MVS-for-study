@@ -1,6 +1,6 @@
 <div class="container">
     <div class="page-header-left">
-        <h1><?=$title?></h1>
+        <h1><?= $title ?></h1>
     </div>
 </div>
 
@@ -11,24 +11,25 @@
 
 <div class="clear"></div>
 
-<div class="tableBlock">
-    <table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover">
+    <tr>
+        <td><b>First Name</b></td>
+        <td><b>Last Name</b></td>
+        <td><b>Age</b></td>
+        <td style="width: 120px"></td>
+    </tr>
+    <?php foreach ($users as $user) : ?>
         <tr>
-            <td><b>First Name</b></td>
-            <td><b>Last Name</b></td>
-            <td><b>Age</b></td>
-            <td style="width: 120px"></td>
+            <td><?= $user->first_name ?></td>
+            <td><?= $user->last_name ?></td>
+            <td><?= $user->age ?></td>
+            <td>
+
+<!--todo: to add id number to href; then, take it in ran method; and make request by id number in activeRecords-->
+
+                <a href="update" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                <a href="#" class="btn btn-danger" name="delete"><i class="fa fa-remove"></i></a>
+            </td>
         </tr>
-        <?php foreach ($users as $user) : ?>
-            <tr>
-                <td><?= $user->first_name ?></td>
-                <td><?= $user->last_name ?></td>
-                <td><?= $user->age ?></td>
-                <td>
-                    <a href="#" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-</div>
+    <?php endforeach; ?>
+</table>
