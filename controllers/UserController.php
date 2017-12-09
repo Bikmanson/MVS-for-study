@@ -2,11 +2,10 @@
 
 namespace controllers;
 
-use Application;
 use framework\Controller;
 use framework\Exception\ConfigException;
-use framework\Exception\WrongStorageException;
-use http\QueryString;
+use framework\Exception\Exception404;
+use framework\Exception\NotExistException;
 use models\User;
 
 /**
@@ -99,5 +98,24 @@ class UserController extends Controller
             'field' => $field,
             'massage' => $massage
         ]);
+    }
+
+    public function actionDelete()
+    {
+        if ($_GET) {
+            try{
+                $id = $_GET['id'];
+                $user = User::update($id);
+                if(!$user){
+                    throw new Exception404('user not exist');
+                }
+                User::delete($id);
+                return $this->render('delete', [
+                    'user' => $user
+                ]);
+            } catch (Exception404 $e) {
+                echo $e->getMessage();
+            }
+        }
     }
 }

@@ -15,8 +15,5 @@ interface IStorage
 
     public static function getModelById($table, $id);
 
-/*
-    public function getColumn($columnName);
-    public function delete(int $id);
-*/
+    public static function delete($table, $id);
 }

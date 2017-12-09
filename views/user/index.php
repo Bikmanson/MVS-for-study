@@ -25,7 +25,7 @@
             <td><?= $user->age?></td>
             <td>
                 <a href="update/?id=<?=$user->id?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                <a href="#" class="btn btn-danger" name="delete"><i class="fa fa-remove"></i></a>
+                <a href="delete/?id=<?=$user->id?>" class="btn btn-danger" name="delete"><i class="fa fa-remove"></i></a>
             </td>
         </tr>
     <?php endforeach; ?>

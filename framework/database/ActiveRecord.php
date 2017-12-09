@@ -133,5 +133,11 @@ abstract class ActiveRecord
         $storage::update($table, $id, $fieldNames, $nameValues);
     }
 
+    public static function delete($id){
+        $table = static::getTableName();
+        $storage = Application::getConfig()['storage']['class'];
+        $storage::delete($table, $id);
+    }
+
 //_______________________________methods that use interface___________________________
 }

@@ -98,9 +98,12 @@ class DBStorage implements IStorage
             return $result;
         }
 
-    /*
-        public function delete(int $id)
+        public static function delete($table, $id)
         {
+            if (!self::$db) {
+                self::init();
+            }
+            $request = sprintf('DELETE FROM %s WHERE id = %d', $table, $id);
+            mysqli_query(self::$db, $request);
         }
-    */
 }
