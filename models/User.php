@@ -17,6 +17,7 @@ class User extends Model
     public $last_name;
     public $first_name;
     public $age;
+    public $id;
 
     public function validate()
     {
@@ -40,12 +41,13 @@ class User extends Model
 
     //--------------------implementations-------------------
 
-    protected static function attributes()
+    public static function attributes()
     {
         return [
             'first_name',
             'last_name',
-            'age'
+            'age',
+            'id'
         ];
     }
 

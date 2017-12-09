@@ -1,4 +1,5 @@
 <?php
+
 namespace controllers;
 
 use Application;
@@ -23,10 +24,12 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        //TODO: this expression creates three new users - delete it!
         $users = User::find();
         $title = 'Users';
-        return $this->render('index', ['users' => $users, 'title' => $title]);
+        return $this->render('index', [
+            'users' => $users,
+            'title' => $title
+        ]);
     }
 
     /**
@@ -42,7 +45,7 @@ class UserController extends Controller
 
         if ($user->validate()) {
             $user->save();
-            return $this->render('create',[
+            return $this->render('create', [
                 'massage' => 'User is saved successfully'
             ]);
         } else {
@@ -53,7 +56,12 @@ class UserController extends Controller
         }
     }
 
-    public function actionUpdate($id){
-        echo $id;
+    public function actionUpdate($id)
+    {
+
+        $field = User::updata($id);
+        return $this->render('update', [
+            'field' => $field
+        ]);
     }
 }

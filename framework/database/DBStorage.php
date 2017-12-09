@@ -52,10 +52,9 @@ class DBStorage implements IStorage
      */
     public static function find($table)
     {
-        if(!self::$db) {
+        if (!self::$db) {
             self::init();
         }
-        // todo: is not ready
         $request = sprintf('SELECT * FROM %s', $table);
         $tableData = mysqli_query(self::$db, $request);
         $result = [];
@@ -64,17 +63,28 @@ class DBStorage implements IStorage
         }
         return $result;
     }
+
+    public static function update($table, $id)
+    {
+        if (!self::$db) {
+            self::init();
+        }
+        $request = sprintf('SELECT * FROM %s WHERE id = %d', $table, $id);
+        $field = mysqli_query(self::$db, $request);
+        $result = [];
+        while($row = mysqli_fetch_array($field)){
+            $result[] = $row;
+        }
+        return $result;
+    }
+
     /*
-    public function getField($fieldName)
-    {
-    }
+        public function getElement(int $id)
+        {
+        }
 
-    public function getElement(int $id)
-    {
-    }
-
-    public function delete(int $id)
-    {
-    }
+        public function delete(int $id)
+        {
+        }
     */
 }
