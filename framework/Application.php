@@ -134,7 +134,6 @@ class Application
             /**
              * request action
              */
-
             if ($parameterArray) {
                 echo $rm->invokeArgs($controller, $parameters);
             } else {

@@ -52,10 +52,9 @@ class DBStorage implements IStorage
      */
     public static function find($table)
     {
-        if(!self::$db) {
+        if (!self::$db) {
             self::init();
         }
-
         $request = sprintf('SELECT * FROM %s', $table);
         $tableData = mysqli_query(self::$db, $request);
         $result = [];
@@ -65,18 +64,43 @@ class DBStorage implements IStorage
         return $result;
     }
 
-    public function getById($id)
+    public static function update($table, $id, $fieldNames, $nameValues)
     {
-        //todo: make this!
+        if (!self::$db) {
+            self::init();
+        }
+        /**
+         * makes assigning of all field names
+         */
+        $assigning = '';
+        for($i = 0; $i < count($fieldNames); $i++){
+            if($assigning !== ''){
+                $assigning .= ', ' . $fieldNames[$i] . ' = "' . $nameValues[$i] . '"';
+            } else {
+                $assigning = $fieldNames[$i] . ' = "' . $nameValues[$i] . '"';
+            }
+        }
+        $request = sprintf('UPDATE %s SET %s WHERE id = %d', $table, $assigning, $id);
+        mysqli_query(self::$db, $request);
     }
+
+        public static function getModelById($table, $id)
+        {
+            if (!self::$db) {
+                self::init();
+            }
+            $request = sprintf('SELECT * FROM %s WHERE id = %d', $table, $id);
+            $queryResult = mysqli_query(self::$db, $request);
+            $result = [];
+            while($row = mysqli_fetch_array($queryResult)){
+                $result[] = $row;
+            }
+            return $result;
+        }
 
     /*
-    public function getField($fieldName)
-    {
-    }
-
-    public function delete(int $id)
-    {
-    }
+        public function delete(int $id)
+        {
+        }
     */
 }

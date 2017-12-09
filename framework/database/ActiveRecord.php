@@ -85,14 +85,15 @@ abstract class ActiveRecord
     {
         // receive fields for insert into
         $fields = static::attributes();
+        $table = static::getTableName();
 
         $values = [];
-        foreach (static::attributes() as $attribute) {
+        foreach ($fields as $attribute) {
             $values[] = $this->$attribute;
         }
 
         // insert new data to database
-        $this->storage->insert(static::getTableName(), $fields, $values);
+        $this->storage->insert($table, $fields, $values);
     }
 
     /**
@@ -113,5 +114,24 @@ abstract class ActiveRecord
         }
         return $models;
     }
+
+    public static function update($id, $fieldNames = null, $nameValues = null){
+        $storage = Application::getConfig()['storage']['class'];
+        $table = static::getTableName();
+
+        if($fieldNames === null && $nameValues === null){
+            $model = $storage::getModelById($table, $id);
+            $attributes = static::attributes();
+            $result = [];
+            foreach ($attributes as $attribute) {
+                foreach ($model as $data) {
+                    $result[$attribute] = $data[$attribute];
+                }
+            }
+            return $result;
+        }
+        $storage::update($table, $id, $fieldNames, $nameValues);
+    }
+
 //_______________________________methods that use interface___________________________
 }

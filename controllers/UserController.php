@@ -1,4 +1,5 @@
 <?php
+
 namespace controllers;
 
 use Application;
@@ -25,7 +26,10 @@ class UserController extends Controller
     {
         $users = User::find();
         $title = 'Users';
-        return $this->render('index', ['users' => $users, 'title' => $title]);
+        return $this->render('index', [
+            'users' => $users,
+            'title' => $title
+        ]);
     }
 
     /**
@@ -41,8 +45,13 @@ class UserController extends Controller
 
         if ($user->validate()) {
             $user->save();
-            return $this->render('create',[
+            return $this->render('create', [
                 'massage' => 'User is saved successfully'
+            ]);
+        } elseif (empty($_POST)) {
+            return $this->render('create', [
+                'massage' => '',
+                'user' => $user
             ]);
         } else {
             return $this->render('create', [
@@ -53,7 +62,42 @@ class UserController extends Controller
 
     }
 
-    public function actionUpdate($id){
-        echo $id;
+    public function actionUpdate($id)
+    {
+        $field = User::update($id);
+        $massage = '';
+        if ($_POST) {
+            $user = new User();
+            $user->first_name = $_POST['firstName'];
+            $user->last_name = $_POST['lastName'];
+            $user->age = $_POST['age'];
+
+            if ($user->validate()) {
+                $fieldNames = [
+                    'first_name',
+                    'last_name',
+                    'age'
+                ];
+                $nameValues = [
+                    $_POST['firstName'],
+                    $_POST['lastName'],
+                    $_POST['age']
+                ];
+                User::update($id, $fieldNames, $nameValues);
+                $field = User::update($id);
+                $massage = 'User data changed successfully';
+            } else {
+                $massage = $user->getErrorsSummary();
+                $field = [
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                    'age' => $user->age
+                ];
+            }
+        }
+        return $this->render('update', [
+            'field' => $field,
+            'massage' => $massage
+        ]);
     }
 }
