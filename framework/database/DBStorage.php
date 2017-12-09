@@ -55,7 +55,7 @@ class DBStorage implements IStorage
         if(!self::$db) {
             self::init();
         }
-        // todo: is not ready
+
         $request = sprintf('SELECT * FROM %s', $table);
         $tableData = mysqli_query(self::$db, $request);
         $result = [];
@@ -64,12 +64,14 @@ class DBStorage implements IStorage
         }
         return $result;
     }
-    /*
-    public function getField($fieldName)
+
+    public function getById($id)
     {
+        //todo: make this!
     }
 
-    public function getElement(int $id)
+    /*
+    public function getField($fieldName)
     {
     }
 

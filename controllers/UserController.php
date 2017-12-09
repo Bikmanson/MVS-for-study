@@ -23,7 +23,6 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        //TODO: this expression creates three new users - delete it!
         $users = User::find();
         $title = 'Users';
         return $this->render('index', ['users' => $users, 'title' => $title]);

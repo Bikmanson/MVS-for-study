@@ -124,7 +124,7 @@ class Application
             $parameters = [];
             if ($parameterArray) {
                 foreach ($parameterArray as $parameter) {
-                    if($_GET[$parameter->name]){
+                    if ($_GET[$parameter->name]) {
                         $parameters[] = $_GET[$parameter->name];
                     }
                 }
@@ -134,11 +134,13 @@ class Application
             /**
              * request action
              */
-            if($parameterArray){
-                echo call_user_func_array([$class, $method], $parameters);
-            }else{
+
+            if ($parameterArray) {
+                echo $rm->invokeArgs($controller, $parameters);
+            } else {
                 echo $controller->$method($parameters);
             }
+
         } catch (Exception404 $e) {
             echo $e->getMessage();
         }
@@ -162,5 +164,4 @@ class Application
     {
         return self::$config[$key] = $val;
     }
-
 }

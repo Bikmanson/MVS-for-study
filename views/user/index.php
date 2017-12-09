@@ -24,10 +24,7 @@
             <td><?= $user->last_name ?></td>
             <td><?= $user->age ?></td>
             <td>
-
-<!--todo: to add id number to href; then, take it in ran method; and make request by id number in activeRecords-->
-
-                <a href="update" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                <a href="update/?id=" class="btn btn-success"><i class="fa fa-edit"></i></a>
                 <a href="#" class="btn btn-danger" name="delete"><i class="fa fa-remove"></i></a>
             </td>
         </tr>
