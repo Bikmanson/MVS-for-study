@@ -11,7 +11,9 @@ interface IStorage
 
     public static function find($table);
 
-    public static function update($table, $id);
+    public static function update($table, $id, $fieldNames, $nameValues);
+
+    public static function getModelById($table, $id);
 /*
     public function getColumn($columnName);
     public function delete(int $id);

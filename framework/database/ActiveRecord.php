@@ -115,18 +115,23 @@ abstract class ActiveRecord
         return $models;
     }
 
-    public static function updata($id){
+    public static function update($id, $fieldNames = null, $nameValues = null){
         $storage = Application::getConfig()['storage']['class'];
         $table = static::getTableName();
-        $queryResult = $storage::update($table, $id);
-        $attributes = static::attributes();
-        $result = [];
-        foreach ($attributes as $attribute) {
-            foreach ($queryResult as $row) {
-                $result[$attribute] = $row[$attribute];
+
+        if($fieldNames === null && $nameValues === null){
+            $model = $storage::getModelById($table, $id);
+            $attributes = static::attributes();
+            $result = [];
+            foreach ($attributes as $attribute) {
+                foreach ($model as $data) {
+                    $result[$attribute] = $data[$attribute];
+                }
             }
+            return $result;
         }
-        return $result;
+
+        $queryResult = $storage::update($table, $id, $fieldNames, $nameValues);
     }
 
 //_______________________________methods that use interface___________________________

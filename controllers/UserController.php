@@ -58,8 +58,24 @@ class UserController extends Controller
 
     public function actionUpdate($id)
     {
+        if($_POST){
+            $fieldNames = [
+                'first_name',
+                'last_name',
+                'age'
+            ];
+            $nameValues = [
+                $_POST['firstName'],
+                $_POST['lastName'],
+                $_POST['age']
+            ];
+            $field = User::update($id, $fieldNames, $nameValues);
+            return $this->render('update', [
+                'field' => $field
+            ]);
+        }
 
-        $field = User::updata($id);
+        $field = User::update($id);
         return $this->render('update', [
             'field' => $field
         ]);

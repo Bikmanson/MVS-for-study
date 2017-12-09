@@ -4,13 +4,9 @@
     <list default="true" id="37e57705-3bdf-4650-b124-a23e7c4938fc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/UserController.php" afterPath="$PROJECT_DIR$/controllers/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/Application.php" afterPath="$PROJECT_DIR$/framework/Application.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/database/ActiveRecord.php" afterPath="$PROJECT_DIR$/framework/database/ActiveRecord.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/database/DBStorage.php" afterPath="$PROJECT_DIR$/framework/database/DBStorage.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/database/IStorage.php" afterPath="$PROJECT_DIR$/framework/database/IStorage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/User.php" afterPath="$PROJECT_DIR$/models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/user/index.php" afterPath="$PROJECT_DIR$/views/user/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/user/update.php" afterPath="$PROJECT_DIR$/views/user/update.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,8 +23,8 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+            <state relative-caret-position="244">
+              <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding>
                 <element signature="e#31#47#0#PHP" expanded="true" />
               </folding>
@@ -36,25 +32,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActiveRecord.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ActiveRecord.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/database/ActiveRecord.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="120" column="39" lean-forward="false" selection-start-line="120" selection-start-column="39" selection-end-line="120" selection-end-column="39" />
+            <state relative-caret-position="419">
+              <caret line="132" column="0" lean-forward="true" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBStorage.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DBStorage.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/database/DBStorage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="66" column="46" lean-forward="true" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
+            <state relative-caret-position="398">
+              <caret line="84" column="21" lean-forward="false" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
               <folding>
-                <marker date="1512821960884" expanded="true" signature="1235:1266" ph="INSERT INTO " />
-                <marker date="1512821960884" expanded="true" signature="1582:1598" ph="SELECT * FRO... " />
-                <marker date="1512821960884" expanded="true" signature="1958:1988" ph="SELECT * FRO... " />
+                <marker date="1512830404028" expanded="true" signature="1235:1266" ph="INSERT INTO " />
+                <marker date="1512830404028" expanded="true" signature="1582:1598" ph="SELECT * FRO... " />
+                <marker date="1512830404028" expanded="true" signature="2383:2407" ph="SELECT * FRO... " />
+                <marker date="1512830404028" expanded="true" signature="2804:2819" ph="SELECT * FRO... " />
+                <marker date="1512830404028" expanded="true" signature="2804:2820" ph="SELECT * FRO... " />
+                <marker date="1512830404028" expanded="true" signature="2804:2834" ph="SELECT * FRO... " />
               </folding>
             </state>
           </provider>
@@ -63,8 +62,8 @@
       <file leaf-file-name="IStorage.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/database/IStorage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+            <state relative-caret-position="300">
+              <caret line="15" column="51" lean-forward="false" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -78,12 +77,15 @@
       <find>$this-&gt;method</find>
       <find>$this-&gt;controller</find>
       <find>$this-&gt;path</find>
+      <find>}</find>
+      <find>$assigning</find>
     </findStrings>
     <replaceStrings>
       <replace>$components</replace>
       <replace>$method</replace>
       <replace>$controller</replace>
       <replace>$path</replace>
+      <replace>$assigningArr</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -104,9 +106,9 @@
         <option value="$PROJECT_DIR$/views/user/update.php" />
         <option value="$PROJECT_DIR$/models/User.php" />
         <option value="$PROJECT_DIR$/framework/database/IStorage.php" />
-        <option value="$PROJECT_DIR$/framework/database/DBStorage.php" />
         <option value="$PROJECT_DIR$/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/framework/database/ActiveRecord.php" />
+        <option value="$PROJECT_DIR$/framework/database/DBStorage.php" />
       </list>
     </option>
   </component>
@@ -256,7 +258,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48665000" />
+    <option name="totallyTimeSpent" value="55883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -398,9 +400,12 @@
         <state relative-caret-position="1380">
           <caret line="69" column="26" lean-forward="false" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
           <folding>
-            <marker date="1512821960884" expanded="true" signature="1235:1266" ph="INSERT INTO " />
-            <marker date="1512821960884" expanded="true" signature="1582:1598" ph="SELECT * FRO... " />
-            <marker date="1512821960884" expanded="true" signature="1958:1988" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="1235:1266" ph="INSERT INTO " />
+            <marker date="1512830404028" expanded="true" signature="1582:1598" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2383:2407" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2819" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2820" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2834" ph="SELECT * FRO... " />
           </folding>
         </state>
       </provider>
@@ -501,9 +506,12 @@
         <state relative-caret-position="1320">
           <caret line="66" column="6" lean-forward="false" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="6" />
           <folding>
-            <marker date="1512821960884" expanded="true" signature="1235:1266" ph="INSERT INTO " />
-            <marker date="1512821960884" expanded="true" signature="1582:1598" ph="SELECT * FRO... " />
-            <marker date="1512821960884" expanded="true" signature="1958:1988" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="1235:1266" ph="INSERT INTO " />
+            <marker date="1512830404028" expanded="true" signature="1582:1598" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2383:2407" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2819" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2820" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2834" ph="SELECT * FRO... " />
           </folding>
         </state>
       </provider>
@@ -695,39 +703,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/database/IStorage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        <state relative-caret-position="300">
+          <caret line="15" column="51" lean-forward="false" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+        <state relative-caret-position="244">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="e#31#47#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/database/DBStorage.php">
+    <entry file="file://$PROJECT_DIR$/framework/database/ActiveRecord.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="66" column="46" lean-forward="true" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
-          <folding>
-            <marker date="1512821960884" expanded="true" signature="1235:1266" ph="INSERT INTO " />
-            <marker date="1512821960884" expanded="true" signature="1582:1598" ph="SELECT * FRO... " />
-            <marker date="1512821960884" expanded="true" signature="1958:1988" ph="SELECT * FRO... " />
-          </folding>
+        <state relative-caret-position="419">
+          <caret line="132" column="0" lean-forward="true" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/framework/database/ActiveRecord.php">
+    <entry file="file://$PROJECT_DIR$/framework/database/DBStorage.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="120" column="39" lean-forward="false" selection-start-line="120" selection-start-column="39" selection-end-line="120" selection-end-column="39" />
-          <folding />
+        <state relative-caret-position="398">
+          <caret line="84" column="21" lean-forward="false" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
+          <folding>
+            <marker date="1512830404028" expanded="true" signature="1235:1266" ph="INSERT INTO " />
+            <marker date="1512830404028" expanded="true" signature="1582:1598" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2383:2407" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2819" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2820" ph="SELECT * FRO... " />
+            <marker date="1512830404028" expanded="true" signature="2804:2834" ph="SELECT * FRO... " />
+          </folding>
         </state>
       </provider>
     </entry>

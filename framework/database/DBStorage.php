@@ -64,12 +64,23 @@ class DBStorage implements IStorage
         return $result;
     }
 
-    public static function update($table, $id)
+    public static function update($table, $id, $fieldNames, $nameValues)
     {
         if (!self::$db) {
             self::init();
         }
-        $request = sprintf('SELECT * FROM %s WHERE id = %d', $table, $id);
+        /**
+         * makes assigning of all field names
+         */
+        $assigning = '';
+        for($i = 0; $i < count($fieldNames); $i++){
+            if($assigning !== ''){
+                $assigning .= ', ' . $fieldNames[$i] . ' = "' . $nameValues[$i] . '"';
+            } else {
+                $assigning = $fieldNames[$i] . ' = "' . $nameValues[$i] . '"';
+            }
+        }
+        $request = sprintf('UPDATE %s SET %s WHERE id = %d', $table, $assigning, $id);
         $field = mysqli_query(self::$db, $request);
         $result = [];
         while($row = mysqli_fetch_array($field)){
@@ -78,11 +89,21 @@ class DBStorage implements IStorage
         return $result;
     }
 
-    /*
-        public function getElement(int $id)
+        public static function getModelById($table, $id)
         {
+            if (!self::$db) {
+                self::init();
+            }
+            $request = sprintf('SELECT * FROM %s WHERE id = %d', $table, $id);
+            $queryResult = mysqli_query(self::$db, $request);
+            $result = [];
+            while($row = mysqli_fetch_array($queryResult)){
+                $result[] = $row;
+            }
+            return $result;
         }
 
+    /*
         public function delete(int $id)
         {
         }
