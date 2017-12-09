@@ -104,8 +104,8 @@ abstract class ActiveRecord
         $table = static::getTableName();
         $queryResult = $storage::find($table);
         $models = [];
+        $modelClassName = static::class;
         foreach ($queryResult as $row) {
-            $modelClassName = static::class;
             $model = new $modelClassName;
             foreach (static::attributes() as $attribute) {
                 $model->$attribute = $row[$attribute];
