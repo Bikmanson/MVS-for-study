@@ -81,12 +81,7 @@ class DBStorage implements IStorage
             }
         }
         $request = sprintf('UPDATE %s SET %s WHERE id = %d', $table, $assigning, $id);
-        $field = mysqli_query(self::$db, $request);
-        $result = [];
-        while($row = mysqli_fetch_array($field)){
-            $result[] = $row;
-        }
-        return $result;
+        mysqli_query(self::$db, $request);
     }
 
         public static function getModelById($table, $id)

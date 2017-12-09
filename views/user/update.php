@@ -1,6 +1,6 @@
 <div class="massage"><?=$massage?></div>
 
-<form method="post" class="form" action="../update/?id=<?=$field['id']?>">
+<form method="post" class="form">
 
     <label for="firstName" class="label">First Name</label>
     <input type="text" class="form-control" name="firstName" id="firstName" value="<?=$field['first_name']?>">
@@ -13,6 +13,6 @@
 
     <input type="submit" value="Save" class="btn-success">
 
-    <a href="../index" class="link">Users list</a> <!--todo: not existing link-->
+    <a href="../index" class="link">Users list</a>
 
 </form>

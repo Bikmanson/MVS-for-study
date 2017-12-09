@@ -130,8 +130,7 @@ abstract class ActiveRecord
             }
             return $result;
         }
-
-        $queryResult = $storage::update($table, $id, $fieldNames, $nameValues);
+        $storage::update($table, $id, $fieldNames, $nameValues);
     }
 
 //_______________________________methods that use interface___________________________
